@@ -78,12 +78,12 @@
                     <navigationItem key="navigationItem" id="lEw-sc-QTw">
                         <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="d5Q-wk-cpa">
                             <connections>
-                                <action selector="fileButtonPressed:" destination="BV1-FR-VrT" id="sqX-27-tYY"/>
+                                <action selector="leftItemButtonPressed:" destination="BV1-FR-VrT" id="cL1-hB-Jtf"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="organize" id="GvU-UY-YoV">
                             <connections>
-                                <action selector="openFilesPressed:" destination="BV1-FR-VrT" id="DnH-mR-Zau"/>
+                                <action selector="rightItemButtonPressed:" destination="BV1-FR-VrT" id="ptN-CJ-qQR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -85,7 +85,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     //MARK: - buttons pressed
-    @IBAction func fileButtonPressed(_ sender: Any) {
+    
+    @IBAction func leftItemButtonPressed(_ sender: Any) {
         if userItemView.isHidden {
             userItemView.isHidden = false
         }else {
@@ -93,7 +94,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-    @IBAction func openFilesPressed(_ sender: Any) {
+    @IBAction func rightItemButtonPressed(_ sender: Any) {
         let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.usdz], asCopy: true)
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
