@@ -18,12 +18,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var itemArray = [Item]()
     let thumbGenerator = GenerateThumbnail()
     
-    var objectToRender = SCNNode()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set the view's delegate
         sceneView.delegate = self
         sceneView.showsStatistics = true
         sceneView.automaticallyUpdatesLighting = true
@@ -33,11 +30,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         userItemView.allowsSelection = true
         userItemView.allowsMultipleSelection = false
         userItemView.delegate = self
-        // Create a new scene
-        //                let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        //
-        //                // Set the scene to the view
-        //                sceneView.scene = scene
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,9 +39,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let configuration = ARWorldTrackingConfiguration()
         
         
-//        configuration.sceneReconstruction = true
+        //        configuration.sceneReconstruction = true
         
-    
         
         // Run the view's session
         sceneView.session.run(configuration)
@@ -62,51 +53,35 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
     
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-        
-    }
-    
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
-    }
-    
-    
     //MARK: - placing objects
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
-            let touchLocation = touch.location(in: sceneView)
-            let results = sceneView.hitTest(touchLocation, types: .featurePoint)
-            if let hitResult = results.first {
-                
-                for item in itemArray {
-                    if item.isSelected {
-                        item.itemNode.position = SCNVector3(hitResult.worldTransform.columns.3.x, hitResult.worldTransform.columns.3.y, hitResult.worldTransform.columns.3.z * 10000)
-                        
-                        print("Your hit result is: \(hitResult)")
-                        sceneView.scene.rootNode.addChildNode(item.itemNode)
-                    }
-                }
+        
+        if let touchLocation = touches.first?.location(in: sceneView) {
+            let hitTestResults = sceneView.hitTest(touchLocation, types: .featurePoint)
+            
+            if let hitResult = hitTestResults.first {
+                addObject(at: hitResult)
+                print("object has been placed")
             }
         }
     }
     
-    func placeObject(position: SCNVector3) {
+    func addObject(at hitResult: ARHitTestResult){
+        var objectToAdd = SCNNode()
+        let location = SCNVector3(x: hitResult.worldTransform.columns.3.x, y: hitResult.worldTransform.columns.3.y, z: hitResult.worldTransform.columns.3.z)
+        
         for item in itemArray {
             if item.isSelected {
-                item.itemNode.position = position
-                sceneView.scene.rootNode.addChildNode(item.itemNode)
+                objectToAdd = item.itemNode
+                objectToAdd.position = location
+                objectToAdd.scale = SCNVector3(0.0005, 0.0005, 0.0005)
+                
+                sceneView.scene.rootNode.addChildNode(objectToAdd)
+                print("\(item.itemName) was set")
+            }else {
+                print("\(item.itemName) was not set")
             }
         }
-    }
-    
-    //MARK: session
-    
-    
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
     }
     
     //MARK: - buttons pressed
@@ -138,10 +113,8 @@ extension ViewController: UIDocumentPickerDelegate {
         
         let modelName = selectedFileURL.lastPathComponent
         let modelTHumb = (thumbGenerator.thumbnail(for: selectedFileURL, size: CGSize(width: 150, height: 150), time: 0) ?? UIImage(named: "doc.plaintext.fill"))!
-        
-        
-        
         let mdlAsset = MDLAsset(url: selectedFileURL)
+        
         mdlAsset.loadTextures()
         let mdlNode = SCNNode(mdlObject: mdlAsset.object(at: 0))
         
@@ -149,14 +122,8 @@ extension ViewController: UIDocumentPickerDelegate {
         
         itemArray.append(newItem)
         userItemView.reloadData()
-        
-        //        mdlNode.position.z = -1000
-        //
-        //        sceneView.scene.rootNode.addChildNode(mdlNode)
-        
     }
 }
-
 
 //MARK: - user item collection
 extension ViewController: UICollectionViewDataSource {
@@ -175,24 +142,21 @@ extension ViewController: UICollectionViewDataSource {
             itemCell.config(itemArray[indexPath.row])
             
             cell = itemCell
-            
         }
         return cell
     }
-    
 }
 
 extension ViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //        userItemView.deselectItem(at: indexPath, animated: true)
-        if itemArray[indexPath.row].isSelected {
-            itemArray[indexPath.row].isSelected = false
-        }else {
-            itemArray[indexPath.row].isSelected = true
+        
+        for var item in itemArray {
+            item.isSelected = false
+            print("\(item.itemName) has been deselected")
         }
         
-        print(itemArray[indexPath.row].itemName)
+        itemArray[indexPath.row].isSelected = true
+        print("\(itemArray[indexPath.row].itemName) has been selected")
     }
-    
 }
