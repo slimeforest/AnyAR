@@ -13,4 +13,5 @@ struct Item {
     let itemName: String
     let itemURL: URL
     let itemImage: UIImage
+    var isSelected: Bool
 }

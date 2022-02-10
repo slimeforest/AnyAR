@@ -20,8 +20,8 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BrB-h1-WRS">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </arscnView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" verticalHuggingPriority="1" verticalCompressionResistancePriority="1" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kd3-IL-kgh" userLabel="User Item Collection View">
-                                <rect key="frame" x="20" y="710" width="374" height="132"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" verticalHuggingPriority="1" verticalCompressionResistancePriority="1" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kd3-IL-kgh" userLabel="User Item Collection View">
+                                <rect key="frame" x="20" y="623" width="374" height="219"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PZ6-wn-rKG">
                                     <size key="itemSize" width="128" height="128"/>
@@ -32,7 +32,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="UserItemCellCollectionViewCell" reuseIdentifier="ItemCell" id="6lu-G7-99N" customClass="UserItemCellCollectionViewCell" customModule="AnyAR" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1" width="130" height="130"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="130" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="i8H-uO-fRR">
                                             <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
