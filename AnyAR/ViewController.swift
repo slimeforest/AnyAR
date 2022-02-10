@@ -14,10 +14,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var userItemView: UICollectionView!
-    
-    let testSource = ["Auggie","Smith","Bing","Chilling"]
-    
-    var userItemArray = [SCNNode]()
+        
+    var itemArray = [Item]()
+    let thumbGenerator = GenerateThumbnail()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,20 +70,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
     }
         @IBAction func fileButtonPressed(_ sender: Any) {
-//            print("suh dude")
-//            let file = "\(UUID().uuidString).txt"
-//            let contents = "Ride with the mob"
-//
-//            let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-//            let fileURL = dir.appendingPathComponent(file)
-//
-//            do {
-//                try contents.write(to: fileURL, atomically: false, encoding: .utf8)
-//                print("file written")
-//            }catch {
-//                print("Error: \(error)")
-//            }
-            
             if userItemView.isHidden {
                 userItemView.isHidden = false
             }else {
@@ -112,19 +97,23 @@ extension ViewController: UIDocumentPickerDelegate {
             return
         }
         
+        let modelName = selectedFileURL.lastPathComponent
+        let modelTHumb = (thumbGenerator.thumbnail(for: selectedFileURL, size: CGSize(width: 150, height: 150), time: 0) ?? UIImage(named: "doc.plaintext.fill"))!
+        
+        
         
         let mdlAsset = MDLAsset(url: selectedFileURL)
         mdlAsset.loadTextures()
         let mdlNode = SCNNode(mdlObject: mdlAsset.object(at: 0))
-//        mdlNode.name = "User Item #\(userItemArray.count + 1)"
-//        userItemArray.append(mdlNode)
-//        for node in userItemArray {
-//            print("User Item: \(node.name)")
-//        }
         
-        mdlNode.position.z = -1000
-
-        sceneView.scene.rootNode.addChildNode(mdlNode)
+        let newItem = Item(itemNode: mdlNode, itemName: modelName, itemURL: selectedFileURL, itemImage: modelTHumb)
+    
+        itemArray.append(newItem)
+        userItemView.reloadData()
+       
+//        mdlNode.position.z = -1000
+//
+//        sceneView.scene.rootNode.addChildNode(mdlNode)
     
     }
 }
@@ -132,7 +121,7 @@ extension ViewController: UIDocumentPickerDelegate {
 extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return testSource.count
+        return itemArray.count
     }
     
     
@@ -142,7 +131,7 @@ extension ViewController: UICollectionViewDataSource {
         
         if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as? UserItemCellCollectionViewCell {
             
-            itemCell.config(testSource[indexPath.row])
+            itemCell.config(itemArray[indexPath.row])
             
             cell = itemCell
             
@@ -156,9 +145,7 @@ extension ViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         userItemView.deselectItem(at: indexPath, animated: true)
-        print(testSource[indexPath.row])
-        
-        
+        print(itemArray[indexPath.row].itemName)
     }
 
 }

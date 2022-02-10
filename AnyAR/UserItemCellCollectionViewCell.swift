@@ -6,14 +6,19 @@
 //
 
 import UIKit
+import SceneKit
 
 class UserItemCellCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     
+    @IBOutlet weak var nodeThumbnailPrev: UIImageView!
     
-    func config(_ name: String) {
-        nameLabel.text = name
+    func config(_ item: Item) {
+        nameLabel.text = item.itemName
+        nodeThumbnailPrev.image = item.itemImage
+        
+//        nodeThumbnailPrev.image = node
 //        print("name has been set")
     }
    

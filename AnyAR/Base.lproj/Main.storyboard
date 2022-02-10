@@ -56,6 +56,7 @@
                                         <size key="customSize" width="130" height="130"/>
                                         <connections>
                                             <outlet property="nameLabel" destination="qFn-Fi-2eC" id="pTD-T4-Opl"/>
+                                            <outlet property="nodeThumbnailPrev" destination="aKN-nI-dnE" id="Br0-uf-B2s"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
