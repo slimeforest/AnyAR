@@ -8,11 +8,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var userItemView: UICollectionView!
 
-    
-    
-    
-    
-    
     var itemArray = [Item]()
     let thumbGenerator = GenerateThumbnail()
     
@@ -20,7 +15,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         super.viewDidLoad()
         
         sceneView.delegate = self
-        sceneView.showsStatistics = true
+        sceneView.showsStatistics = false
         sceneView.automaticallyUpdatesLighting = true
         sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         
@@ -81,10 +76,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     //MARK: - buttons pressed
     
     @IBAction func leftItemButtonPressed(_ sender: Any) {
-        if userItemView.isHidden {
+        if userItemView.isHidden && controlButtonOutlet.isHidden {
             userItemView.isHidden = false
+            
+            controlButtonOutlet.isHidden = false
+            controlButtonOutlet.isEnabled = true
         }else {
             userItemView.isHidden = true
+            controlButtonOutlet.isHidden = true
+            controlButtonOutlet.isEnabled = false
         }
     }
     
@@ -108,13 +108,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var yAxisSliderOutlet: UISlider!
     @IBOutlet weak var yAxisLabelOutlet: UILabel!
     
+    @IBOutlet weak var scaleLabelOutlet: UILabel!
+    @IBOutlet weak var scaleSliderOutlet: UISlider! {
+        didSet{
+            scaleSliderOutlet.transform = CGAffineTransform(rotationAngle: -Double.pi / 2)
+        }
+    }
+    @IBOutlet weak var controlButtonOutlet: UIButton!
     
     @IBAction func controlButtonPressed(_ sender: Any) {
         toggleControls()
     }
-    
-    
-    
     
     func toggleControls() {
         if rotateSliderOutlet.isEnabled &&
@@ -124,7 +128,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             yAxisSliderOutlet.isEnabled &&
             yAxisLabelOutlet.isEnabled &&
             zAxisSliderOutlet.isEnabled &&
-            zAxisLabelOutlet.isEnabled {
+            zAxisLabelOutlet.isEnabled &&
+            scaleSliderOutlet.isEnabled &&
+            scaleLabelOutlet.isEnabled {
             
             rotateSliderOutlet.isEnabled = false
             rotateLabelOutlet.isEnabled = false
@@ -134,6 +140,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             yAxisLabelOutlet.isEnabled = false
             zAxisSliderOutlet.isEnabled = false
             zAxisLabelOutlet.isEnabled = false
+            scaleSliderOutlet.isEnabled = false
+            scaleLabelOutlet.isEnabled = false
             
             rotateSliderOutlet.isHidden = true
             rotateLabelOutlet.isHidden = true
@@ -143,6 +151,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             yAxisLabelOutlet.isHidden = true
             zAxisSliderOutlet.isHidden = true
             zAxisLabelOutlet.isHidden = true
+            scaleSliderOutlet.isHidden = true
+            scaleLabelOutlet.isHidden = true
             
         }else {
             rotateSliderOutlet.isEnabled = true
@@ -153,6 +163,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             yAxisLabelOutlet.isEnabled = true
             zAxisSliderOutlet.isEnabled = true
             zAxisLabelOutlet.isEnabled = true
+            scaleSliderOutlet.isEnabled = true
+            scaleLabelOutlet.isEnabled = true
             
             rotateSliderOutlet.isHidden = false
             rotateLabelOutlet.isHidden = false
@@ -162,6 +174,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             yAxisLabelOutlet.isHidden = false
             zAxisSliderOutlet.isHidden = false
             zAxisLabelOutlet.isHidden = false
+            scaleSliderOutlet.isHidden = false
+            scaleLabelOutlet.isHidden = false
         }
     }
     
@@ -182,6 +196,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func yAxisSlider(_ sender: Any) {
         print("y axis slider changed")
     }
+    
+    @IBAction func scaleSlider(_ sender: Any) {
+        print("scale slider changed")
+    }
+    
+    
 }
 
 //MARK: - document picker
@@ -232,24 +252,51 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegate {
     
+    func highlight(_ index: IndexPath) {
+        userItemView.cellForItem(at: index)?.layer.borderWidth = 2.0
+        userItemView.cellForItem(at: index)?.layer.borderColor = UIColor.systemBlue.cgColor
+        userItemView.cellForItem(at: index)?.layer.cornerRadius = 10
+    }
+    
+//    func unhighlight(_ index: IndexPath) {
+//        userItemView.cellForItem(at: index)?.layer.borderWidth = 0
+//        userItemView.cellForItem(at: index)?.layer.borderColor = UIColor.clear.cgColor
+//
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
         if itemArray[indexPath.row].isSelected == false {
             for item in itemArray {
                 item.isSelected = false
             }
             itemArray[indexPath.row].isSelected = true
-            userItemView.cellForItem(at: indexPath)?.isSelected = true
+            
+            
+//            userItemView.cellForItem(at: indexPath)?.isHighlighted = true
+            
+            
         }else if itemArray[indexPath.row].isSelected == true {
             itemArray[indexPath.row].isSelected = false
-            userItemView.cellForItem(at: indexPath)?.isSelected = false
+            
+            
+//            userItemView.cellForItem(at: indexPath)?.isHighlighted = false
+            
+            
         }
         userItemView.reloadData()
     }
-}
-//MARK: - sliders
-extension ViewController {
     
-  
+//    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+//        userItemView.cellForItem(at: indexPath)?.layer.borderWidth = 2.0
+//        userItemView.cellForItem(at: indexPath)?.layer.borderColor = UIColor.systemBlue.cgColor
+//        userItemView.cellForItem(at: indexPath)?.layer.cornerRadius = 10
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+//        userItemView.cellForItem(at: indexPath)?.layer.borderWidth = 2.0
+//        userItemView.cellForItem(at: indexPath)?.layer.borderColor = UIColor.clear.cgColor
+//    }
+    
+    
 }
-
