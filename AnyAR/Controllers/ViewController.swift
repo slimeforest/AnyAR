@@ -7,6 +7,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var userItemView: UICollectionView!
+
+    
+    
+    
+    
     
     var itemArray = [Item]()
     let thumbGenerator = GenerateThumbnail()
@@ -89,6 +94,94 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         documentPicker.allowsMultipleSelection = false
         present(documentPicker, animated: true, completion: nil)
     }
+    
+    //MARK: - sliders
+    @IBOutlet weak var rotateSliderOutlet: UISlider!
+    @IBOutlet weak var rotateLabelOutlet: UILabel!
+
+    @IBOutlet weak var xAxisSliderOutlet: UISlider!
+    @IBOutlet weak var xAxisLabelOutlet: UILabel!
+
+    @IBOutlet weak var zAxisSliderOutlet: UISlider!
+    @IBOutlet weak var zAxisLabelOutlet: UILabel!
+
+    @IBOutlet weak var yAxisSliderOutlet: UISlider!
+    @IBOutlet weak var yAxisLabelOutlet: UILabel!
+    
+    
+    @IBAction func controlButtonPressed(_ sender: Any) {
+        toggleControls()
+    }
+    
+    
+    
+    
+    func toggleControls() {
+        if rotateSliderOutlet.isEnabled &&
+            rotateLabelOutlet.isEnabled &&
+            xAxisSliderOutlet.isEnabled &&
+            xAxisLabelOutlet.isEnabled &&
+            yAxisSliderOutlet.isEnabled &&
+            yAxisLabelOutlet.isEnabled &&
+            zAxisSliderOutlet.isEnabled &&
+            zAxisLabelOutlet.isEnabled {
+            
+            rotateSliderOutlet.isEnabled = false
+            rotateLabelOutlet.isEnabled = false
+            xAxisSliderOutlet.isEnabled = false
+            xAxisLabelOutlet.isEnabled = false
+            yAxisSliderOutlet.isEnabled = false
+            yAxisLabelOutlet.isEnabled = false
+            zAxisSliderOutlet.isEnabled = false
+            zAxisLabelOutlet.isEnabled = false
+            
+            rotateSliderOutlet.isHidden = true
+            rotateLabelOutlet.isHidden = true
+            xAxisSliderOutlet.isHidden = true
+            xAxisLabelOutlet.isHidden = true
+            yAxisSliderOutlet.isHidden = true
+            yAxisLabelOutlet.isHidden = true
+            zAxisSliderOutlet.isHidden = true
+            zAxisLabelOutlet.isHidden = true
+            
+        }else {
+            rotateSliderOutlet.isEnabled = true
+            rotateLabelOutlet.isEnabled = true
+            xAxisSliderOutlet.isEnabled = true
+            xAxisLabelOutlet.isEnabled = true
+            yAxisSliderOutlet.isEnabled = true
+            yAxisLabelOutlet.isEnabled = true
+            zAxisSliderOutlet.isEnabled = true
+            zAxisLabelOutlet.isEnabled = true
+            
+            rotateSliderOutlet.isHidden = false
+            rotateLabelOutlet.isHidden = false
+            xAxisSliderOutlet.isHidden = false
+            xAxisLabelOutlet.isHidden = false
+            yAxisSliderOutlet.isHidden = false
+            yAxisLabelOutlet.isHidden = false
+            zAxisSliderOutlet.isHidden = false
+            zAxisLabelOutlet.isHidden = false
+        }
+    }
+    
+    
+    
+    @IBAction func rotateSlider(_ sender: Any) {
+        print("rotate slider changed")
+    }
+    
+    @IBAction func xAxisSlider(_ sender: Any) {
+        print("x axis slider changed")
+    }
+    
+    @IBAction func zAxisSlider(_ sender: Any) {
+        print("z axis slider changed")
+    }
+    
+    @IBAction func yAxisSlider(_ sender: Any) {
+        print("y axis slider changed")
+    }
 }
 
 //MARK: - document picker
@@ -151,10 +244,12 @@ extension ViewController: UICollectionViewDelegate {
             itemArray[indexPath.row].isSelected = false
             userItemView.cellForItem(at: indexPath)?.isSelected = false
         }
-        
         userItemView.reloadData()
     }
 }
-
-
+//MARK: - sliders
+extension ViewController {
+    
+  
+}
 
