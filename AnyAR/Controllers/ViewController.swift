@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  AnyAR
-//
-//  Created by Jack Battle on 1/20/22.
-//
-
 import UIKit
 import SceneKit
 import ARKit
@@ -38,10 +31,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
         
-        
-        //        configuration.sceneReconstruction = true
-        
-        
         // Run the view's session
         sceneView.session.run(configuration)
     }
@@ -69,15 +58,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func addObject(at hitResult: ARHitTestResult){
         var objectToAdd = SCNNode()
         let location = SCNVector3(x: hitResult.worldTransform.columns.3.x, y: hitResult.worldTransform.columns.3.y, z: hitResult.worldTransform.columns.3.z)
+        let itemScale = SCNVector3(0.0005, 0.0005, 0.0005)
         
-        for item in itemArray {
+        for var item in itemArray {
             if item.isSelected {
                 objectToAdd = item.itemNode
                 objectToAdd.position = location
-                objectToAdd.scale = SCNVector3(0.0005, 0.0005, 0.0005)
-                
+                objectToAdd.scale = itemScale
+
                 sceneView.scene.rootNode.addChildNode(objectToAdd)
-                print("\(item.itemName) was set")
             }else {
                 print("\(item.itemName) was not set")
             }
@@ -119,10 +108,11 @@ extension ViewController: UIDocumentPickerDelegate {
         mdlAsset.loadTextures()
         let mdlNode = SCNNode(mdlObject: mdlAsset.object(at: 0))
         
-        let newItem = Item(itemNode: mdlNode, itemName: modelName, itemURL: selectedFileURL, itemImage: modelTHumb, isSelected: false)
+        let newItem = Item(node: mdlNode, name: modelName, url: selectedFileURL, image: modelTHumb, selected: false)
         
         itemArray.append(newItem)
         userItemView.reloadData()
+        print("Item array when new item has been set: \(itemArray)")
     }
 }
 
@@ -132,7 +122,6 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return itemArray.count
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -151,13 +140,21 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        for var item in itemArray {
-            item.isSelected = false
-            print("\(item.itemName) has been deselected")
+
+        if itemArray[indexPath.row].isSelected == false {
+            for item in itemArray {
+                item.isSelected = false
+            }
+            itemArray[indexPath.row].isSelected = true
+            userItemView.cellForItem(at: indexPath)?.isSelected = true
+        }else if itemArray[indexPath.row].isSelected == true {
+            itemArray[indexPath.row].isSelected = false
+            userItemView.cellForItem(at: indexPath)?.isSelected = false
         }
         
-        itemArray[indexPath.row].isSelected = true
-        print("\(itemArray[indexPath.row].itemName) has been selected")
+        userItemView.reloadData()
     }
 }
+
+
+
