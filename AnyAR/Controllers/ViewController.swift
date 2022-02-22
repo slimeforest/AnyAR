@@ -9,6 +9,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var userItemView: UICollectionView!
 
     var itemArray = [Item]()
+    var renderArray = [RenderItem]()
     let thumbGenerator = GenerateThumbnail()
     
     override func viewDidLoad() {
@@ -56,17 +57,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func addObject(at hitResult: ARHitTestResult){
-        var objectToAdd = SCNNode()
+        var nodeToAdd = SCNNode()
         let location = SCNVector3(x: hitResult.worldTransform.columns.3.x, y: hitResult.worldTransform.columns.3.y, z: hitResult.worldTransform.columns.3.z)
         let itemScale = SCNVector3(0.0005, 0.0005, 0.0005)
         
         for var item in itemArray {
             if item.isSelected {
-                objectToAdd = item.itemNode
-                objectToAdd.position = location
-                objectToAdd.scale = itemScale
-
-                sceneView.scene.rootNode.addChildNode(objectToAdd)
+                nodeToAdd = item.itemNode
+                nodeToAdd.position = location
+                nodeToAdd.scale = itemScale
+                
+                sceneView.scene.rootNode.addChildNode(nodeToAdd)
             }else {
                 print("\(item.itemName) was not set")
             }
@@ -185,23 +186,49 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         print("rotate slider changed")
     }
     
-    @IBAction func xAxisSlider(_ sender: Any) {
-        print("x axis slider changed")
+    @IBAction func xAxisSlider(_ sender: UISlider) {
+        let value = sender.value * 0.005
+        print("x axis slider value is: \(value)")
+        for item in itemArray {
+            if item.isSelected {
+                item.itemNode.position.x = item.itemNode.position.x + value
+            }
+        }
     }
     
-    @IBAction func zAxisSlider(_ sender: Any) {
-        print("z axis slider changed")
+    @IBAction func zAxisSlider(_ sender: UISlider) {
+        let value = sender.value * 0.005
+        print("z axis slider value is: \(value)")
+        for item in itemArray {
+            if item.isSelected {
+                item.itemNode.position.z = item.itemNode.position.z + value
+            }
+        }
     }
     
-    @IBAction func yAxisSlider(_ sender: Any) {
-        print("y axis slider changed")
+    @IBAction func yAxisSlider(_ sender: UISlider) {
+        let value = sender.value * 0.005
+        print("x axis slider value is: \(value)")
+        for item in itemArray {
+            if item.isSelected {
+                item.itemNode.position.y = item.itemNode.position.y + value
+            }
+        }
     }
     
-    @IBAction func scaleSlider(_ sender: Any) {
+    @IBAction func scaleSlider(_ sender: UISlider) {
         print("scale slider changed")
+        let value = sender.value * 0.005
+        let scale = SCNVector3(x: value, y: value, z: value)
+        
+        for item in itemArray {
+            if item.isSelected {
+                item.itemNode.scale.x = item.itemNode.scale.x * value
+                item.itemNode.scale.y = item.itemNode.scale.y * value
+                item.itemNode.scale.z = item.itemNode.scale.z * value
+            }
+        }
     }
-    
-    
 }
 
 //MARK: - document picker
