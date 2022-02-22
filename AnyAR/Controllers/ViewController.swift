@@ -73,7 +73,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             }
         }
     }
-    
     //MARK: - buttons pressed
     
     @IBAction func leftItemButtonPressed(_ sender: Any) {
@@ -99,22 +98,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     //MARK: - sliders
     @IBOutlet weak var rotateSliderOutlet: UISlider!
     @IBOutlet weak var rotateLabelOutlet: UILabel!
-
-    @IBOutlet weak var xAxisSliderOutlet: UISlider!
-    @IBOutlet weak var xAxisLabelOutlet: UILabel!
-
-    @IBOutlet weak var zAxisSliderOutlet: UISlider!
-    @IBOutlet weak var zAxisLabelOutlet: UILabel!
-
-    @IBOutlet weak var yAxisSliderOutlet: UISlider!
-    @IBOutlet weak var yAxisLabelOutlet: UILabel!
     
+    @IBOutlet weak var scaleSliderOutlet: UISlider!
     @IBOutlet weak var scaleLabelOutlet: UILabel!
-    @IBOutlet weak var scaleSliderOutlet: UISlider! {
-        didSet{
-            scaleSliderOutlet.transform = CGAffineTransform(rotationAngle: -Double.pi / 2)
-        }
-    }
+    
     @IBOutlet weak var controlButtonOutlet: UIButton!
     
     @IBAction func controlButtonPressed(_ sender: Any) {
@@ -124,113 +111,73 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func toggleControls() {
         if rotateSliderOutlet.isEnabled &&
             rotateLabelOutlet.isEnabled &&
-            xAxisSliderOutlet.isEnabled &&
-            xAxisLabelOutlet.isEnabled &&
-            yAxisSliderOutlet.isEnabled &&
-            yAxisLabelOutlet.isEnabled &&
-            zAxisSliderOutlet.isEnabled &&
-            zAxisLabelOutlet.isEnabled &&
             scaleSliderOutlet.isEnabled &&
             scaleLabelOutlet.isEnabled {
             
             rotateSliderOutlet.isEnabled = false
             rotateLabelOutlet.isEnabled = false
-            xAxisSliderOutlet.isEnabled = false
-            xAxisLabelOutlet.isEnabled = false
-            yAxisSliderOutlet.isEnabled = false
-            yAxisLabelOutlet.isEnabled = false
-            zAxisSliderOutlet.isEnabled = false
-            zAxisLabelOutlet.isEnabled = false
             scaleSliderOutlet.isEnabled = false
             scaleLabelOutlet.isEnabled = false
             
             rotateSliderOutlet.isHidden = true
             rotateLabelOutlet.isHidden = true
-            xAxisSliderOutlet.isHidden = true
-            xAxisLabelOutlet.isHidden = true
-            yAxisSliderOutlet.isHidden = true
-            yAxisLabelOutlet.isHidden = true
-            zAxisSliderOutlet.isHidden = true
-            zAxisLabelOutlet.isHidden = true
             scaleSliderOutlet.isHidden = true
             scaleLabelOutlet.isHidden = true
             
         }else {
             rotateSliderOutlet.isEnabled = true
             rotateLabelOutlet.isEnabled = true
-            xAxisSliderOutlet.isEnabled = true
-            xAxisLabelOutlet.isEnabled = true
-            yAxisSliderOutlet.isEnabled = true
-            yAxisLabelOutlet.isEnabled = true
-            zAxisSliderOutlet.isEnabled = true
-            zAxisLabelOutlet.isEnabled = true
             scaleSliderOutlet.isEnabled = true
             scaleLabelOutlet.isEnabled = true
             
             rotateSliderOutlet.isHidden = false
             rotateLabelOutlet.isHidden = false
-            xAxisSliderOutlet.isHidden = false
-            xAxisLabelOutlet.isHidden = false
-            yAxisSliderOutlet.isHidden = false
-            yAxisLabelOutlet.isHidden = false
-            zAxisSliderOutlet.isHidden = false
-            zAxisLabelOutlet.isHidden = false
             scaleSliderOutlet.isHidden = false
             scaleLabelOutlet.isHidden = false
         }
     }
     
-    
-    
-    @IBAction func rotateSlider(_ sender: Any) {
-        print("rotate slider changed")
-    }
-    
-    @IBAction func xAxisSlider(_ sender: UISlider) {
-        let value = sender.value * 0.005
-        print("x axis slider value is: \(value)")
-        for item in itemArray {
-            if item.isSelected {
-                item.itemNode.position.x = item.itemNode.position.x + value
-            }
-        }
-    }
-    
-    @IBAction func zAxisSlider(_ sender: UISlider) {
-        let value = sender.value * 0.005
-        print("z axis slider value is: \(value)")
-        for item in itemArray {
-            if item.isSelected {
-                item.itemNode.position.z = item.itemNode.position.z + value
-            }
-        }
-    }
-    
-    @IBAction func yAxisSlider(_ sender: UISlider) {
-        let value = sender.value * 0.005
-        print("x axis slider value is: \(value)")
-        for item in itemArray {
-            if item.isSelected {
-                item.itemNode.position.y = item.itemNode.position.y + value
-            }
-        }
-    }
-    
-    @IBAction func scaleSlider(_ sender: UISlider) {
-        print("scale slider changed")
-        let value = sender.value * 0.005
-        let scale = SCNVector3(x: value, y: value, z: value)
+    @IBAction func rotateSlider(_ sender: UISlider) {
+        let value = sender.value
+        let roundedValue = Int(round(value))
+        print(roundedValue)
+        let negRange = (-16)...(-1)
+        let posRange = 1...16
         
         for item in itemArray {
             if item.isSelected {
-                item.itemNode.scale.x = item.itemNode.scale.x * value
-                item.itemNode.scale.y = item.itemNode.scale.y * value
-                item.itemNode.scale.z = item.itemNode.scale.z * value
+                let originalEulerAngle = item.itemNode.eulerAngles.y
+                
+                if negRange.contains(roundedValue) || posRange.contains(roundedValue) {
+                    item.itemNode.eulerAngles.y = .pi/Float(roundedValue)
+                }else {
+                    item.itemNode.eulerAngles.y = originalEulerAngle
+                }
+                
             }
         }
+        
     }
+    
+    @IBAction func scaleSlider(_ sender: UISlider) {
+        print("working")
+    }
+//
+//    @IBAction func scaleSlider(_ sender: UISlider) {
+//        print("scale slider changed")
+//        let value = sender.value * 0.005
+//        let scale = SCNVector3(x: value, y: value, z: value)
+//
+//        for item in itemArray {
+//            if item.isSelected {
+//                item.itemNode.scale.x = item.itemNode.scale.x * value
+//                item.itemNode.scale.y = item.itemNode.scale.y * value
+//                item.itemNode.scale.z = item.itemNode.scale.z * value
+//            }
+//        }
+//    }
+//}
 }
-
 //MARK: - document picker
 extension ViewController: UIDocumentPickerDelegate {
     
@@ -324,6 +271,4 @@ extension ViewController: UICollectionViewDelegate {
 //        userItemView.cellForItem(at: indexPath)?.layer.borderWidth = 2.0
 //        userItemView.cellForItem(at: indexPath)?.layer.borderColor = UIColor.clear.cgColor
 //    }
-    
-    
 }
