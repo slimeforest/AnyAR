@@ -219,8 +219,9 @@ extension ViewController: UICollectionViewDataSource {
         if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as? UserItemCellCollectionViewCell {
             
             itemCell.config(itemArray[indexPath.row])
-            
+
             cell = itemCell
+            
         }
         return cell
     }
@@ -230,29 +231,70 @@ extension ViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if itemArray[indexPath.row].isSelected == false {
-            for item in itemArray {
-                item.isSelected = false
-            }
-            itemArray[indexPath.row].isSelected = true
-            
-        }else if itemArray[indexPath.row].isSelected == true {
-            itemArray[indexPath.row].isSelected = false
+        for item in itemArray {
+            item.isSelected = false
+            print("item \(item.itemName) selection is: \(item.isSelected)")
         }
         
+        itemArray[indexPath.row].isSelected = true
+        print("item \(itemArray[indexPath.row].itemName) is now: \(itemArray[indexPath.row].isSelected)")
+        
         highlightSelectedItem(position: indexPath)
+        
+//        if itemArray[indexPath.row].isSelected == false {
+//            for item in itemArray {
+//                item.isSelected = false
+//            }
+//            itemArray[indexPath.row].isSelected = true
+//
+//            highlightSelectedItem(position: indexPath)
+//
+//        }else if itemArray[indexPath.row].isSelected == true {
+//            itemArray[indexPath.row].isSelected = false
+//        }
+        
+//        highlightSelectedItem(position: indexPath)
         
         userItemView.reloadData()
     }
     
     func highlightSelectedItem(position: IndexPath) {
-                
+
         for cell in userItemView.visibleCells {
             cell.layer.borderColor = UIColor.clear.cgColor
         }
- 
-        userItemView.cellForItem(at: position)?.layer.borderColor = UIColor.systemBlue.cgColor
-        userItemView.cellForItem(at: position)?.layer.borderWidth = 2.0
-        userItemView.cellForItem(at: position)?.layer.cornerRadius = 10
+        
+        if itemArray.count <= 2 {
+            for item in itemArray {
+                if item.isSelected {
+                    userItemView.cellForItem(at: position)?.layer.borderColor = UIColor.systemBlue.cgColor
+                    userItemView.cellForItem(at: position)?.layer.borderWidth = 2.0
+                    userItemView.cellForItem(at: position)?.layer.cornerRadius = 10
+                }
+            }
+        }else if itemArray.count > 2 {
+            
+            var newPosition = position
+            newPosition.row -= 1
+            
+            print("new position is: \(newPosition)")
+            
+            for item in itemArray {
+                if item.isSelected {
+                    userItemView.cellForItem(at: newPosition)?.layer.borderColor = UIColor.systemBlue.cgColor
+                    userItemView.cellForItem(at: newPosition)?.layer.borderWidth = 2.0
+                    userItemView.cellForItem(at: newPosition)?.layer.cornerRadius = 10
+                }
+            }
+        }
+        
+        
+        
+        
+//        userItemView.cellForItem(at: position)?.layer.borderColor = UIColor.systemBlue.cgColor
+//        userItemView.cellForItem(at: position)?.layer.borderWidth = 2.0
+//        userItemView.cellForItem(at: position)?.layer.cornerRadius = 10
+        
+        print("you tapped: \(userItemView.cellForItem(at: position))")
     }
 }

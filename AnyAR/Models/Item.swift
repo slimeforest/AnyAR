@@ -15,6 +15,7 @@ class Item {
     let itemImage: UIImage
     var isSelected: Bool
     
+    
     init(node: SCNNode, name: String, url: URL, image: UIImage, selected: Bool) {
         itemNode = node
         itemName = name

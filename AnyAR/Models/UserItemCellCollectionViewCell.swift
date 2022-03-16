@@ -9,9 +9,8 @@ import UIKit
 import SceneKit
 
 class UserItemCellCollectionViewCell: UICollectionViewCell {
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    
+
+    @IBOutlet weak var nameLabel: UILabel!    
     @IBOutlet weak var nodeThumbnailPrev: UIImageView!
     
     func config(_ item: Item) {
