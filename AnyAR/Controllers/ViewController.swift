@@ -7,10 +7,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var userItemView: UICollectionView!
-
+    
     var itemArray = [Item]()
-    var renderArray = [RenderItem]()
+//    var renderArray = [RenderItem]()
     let thumbGenerator = GenerateThumbnail()
+    
+    var selectedCell = UICollectionViewCell()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -162,21 +164,21 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func scaleSlider(_ sender: UISlider) {
         print("working")
     }
-//
-//    @IBAction func scaleSlider(_ sender: UISlider) {
-//        print("scale slider changed")
-//        let value = sender.value * 0.005
-//        let scale = SCNVector3(x: value, y: value, z: value)
-//
-//        for item in itemArray {
-//            if item.isSelected {
-//                item.itemNode.scale.x = item.itemNode.scale.x * value
-//                item.itemNode.scale.y = item.itemNode.scale.y * value
-//                item.itemNode.scale.z = item.itemNode.scale.z * value
-//            }
-//        }
-//    }
-//}
+    //
+    //    @IBAction func scaleSlider(_ sender: UISlider) {
+    //        print("scale slider changed")
+    //        let value = sender.value * 0.005
+    //        let scale = SCNVector3(x: value, y: value, z: value)
+    //
+    //        for item in itemArray {
+    //            if item.isSelected {
+    //                item.itemNode.scale.x = item.itemNode.scale.x * value
+    //                item.itemNode.scale.y = item.itemNode.scale.y * value
+    //                item.itemNode.scale.z = item.itemNode.scale.z * value
+    //            }
+    //        }
+    //    }
+    //}
 }
 //MARK: - document picker
 extension ViewController: UIDocumentPickerDelegate {
@@ -226,18 +228,6 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegate {
     
-    func highlight(_ index: IndexPath) {
-        userItemView.cellForItem(at: index)?.layer.borderWidth = 2.0
-        userItemView.cellForItem(at: index)?.layer.borderColor = UIColor.systemBlue.cgColor
-        userItemView.cellForItem(at: index)?.layer.cornerRadius = 10
-    }
-    
-//    func unhighlight(_ index: IndexPath) {
-//        userItemView.cellForItem(at: index)?.layer.borderWidth = 0
-//        userItemView.cellForItem(at: index)?.layer.borderColor = UIColor.clear.cgColor
-//
-//    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if itemArray[indexPath.row].isSelected == false {
@@ -246,29 +236,23 @@ extension ViewController: UICollectionViewDelegate {
             }
             itemArray[indexPath.row].isSelected = true
             
-            
-//            userItemView.cellForItem(at: indexPath)?.isHighlighted = true
-            
-            
         }else if itemArray[indexPath.row].isSelected == true {
             itemArray[indexPath.row].isSelected = false
-            
-            
-//            userItemView.cellForItem(at: indexPath)?.isHighlighted = false
-            
-            
         }
+        
+        highlightSelectedItem(position: indexPath)
+        
         userItemView.reloadData()
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-//        userItemView.cellForItem(at: indexPath)?.layer.borderWidth = 2.0
-//        userItemView.cellForItem(at: indexPath)?.layer.borderColor = UIColor.systemBlue.cgColor
-//        userItemView.cellForItem(at: indexPath)?.layer.cornerRadius = 10
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
-//        userItemView.cellForItem(at: indexPath)?.layer.borderWidth = 2.0
-//        userItemView.cellForItem(at: indexPath)?.layer.borderColor = UIColor.clear.cgColor
-//    }
+    func highlightSelectedItem(position: IndexPath) {
+                
+        for cell in userItemView.visibleCells {
+            cell.layer.borderColor = UIColor.clear.cgColor
+        }
+ 
+        userItemView.cellForItem(at: position)?.layer.borderColor = UIColor.systemBlue.cgColor
+        userItemView.cellForItem(at: position)?.layer.borderWidth = 2.0
+        userItemView.cellForItem(at: position)?.layer.cornerRadius = 10
+    }
 }
