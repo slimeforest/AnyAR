@@ -8,15 +8,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var userItemView: UICollectionView!
     
-    var itemArray = [Item]()
-//    var renderArray = [RenderItem]()
-    let thumbGenerator = GenerateThumbnail()
     
-    var selectedCell = UICollectionViewCell()
+    var userImage = UIImage() {
+        didSet {
+            self.performSegue(withIdentifier: "goToImagePreview", sender: self)
+        }
+    }
+    var itemArray = [Item]()
+    //    var renderArray = [RenderItem]()
+    let thumbGenerator = GenerateThumbnail()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         sceneView.delegate = self
         sceneView.showsStatistics = false
         sceneView.automaticallyUpdatesLighting = true
@@ -26,6 +30,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         userItemView.allowsSelection = true
         userItemView.allowsMultipleSelection = false
         userItemView.delegate = self
+        userItemView.isHidden = false
+        
+        captureButtonOutlet.layer.borderColor = UIColor.systemBlue.cgColor
+        captureButtonOutlet.layer.borderWidth = 1.0
+        captureButtonOutlet.layer.cornerRadius = 5
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,6 +79,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 nodeToAdd.scale = itemScale
                 
                 sceneView.scene.rootNode.addChildNode(nodeToAdd)
+                print("\(item.itemName) was set")
+
             }else {
                 print("\(item.itemName) was not set")
             }
@@ -77,14 +88,25 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     //MARK: - buttons pressed
     
+    @IBOutlet weak var captureButtonOutlet: UIButton!
+    
     @IBAction func leftItemButtonPressed(_ sender: Any) {
-        if userItemView.isHidden && controlButtonOutlet.isHidden {
+        if userItemView.isHidden && controlButtonOutlet.isHidden && captureButtonOutlet.isHidden {
+            
             userItemView.isHidden = false
+            
+            captureButtonOutlet.isHidden = false
+            captureButtonOutlet.isEnabled = true
             
             controlButtonOutlet.isHidden = false
             controlButtonOutlet.isEnabled = true
         }else {
+            
             userItemView.isHidden = true
+            
+            captureButtonOutlet.isHidden = false
+            captureButtonOutlet.isEnabled = true
+            
             controlButtonOutlet.isHidden = true
             controlButtonOutlet.isEnabled = false
         }
@@ -95,6 +117,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
         present(documentPicker, animated: true, completion: nil)
+    }
+    
+    @IBAction func captureButtonPressed(_ sender: Any) {
+        let image: UIImage = sceneView.snapshot()
+        self.userImage = image
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToImagePreview" {
+            let destinationVC = segue.destination as? ImagePreviewVC
+            destinationVC?.image = self.userImage
+        }
     }
     
     //MARK: - sliders
@@ -219,82 +252,73 @@ extension ViewController: UICollectionViewDataSource {
         if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as? UserItemCellCollectionViewCell {
             
             itemCell.config(itemArray[indexPath.row])
-
-            cell = itemCell
             
+            cell = itemCell
         }
+        cell.layoutIfNeeded()
         return cell
     }
+
 }
 
 extension ViewController: UICollectionViewDelegate {
+    
+//    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+//
+//        userItemView.selectItem(at: indexPath, animated: true, scrollPosition: UICollectionView.ScrollPosition.centeredHorizontally)
+//        highlightSelectedItem(position: indexPath)
+//                userItemView.reloadData()
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+//        unhighlightSelectedItem()
+//        userItemView.reloadData()
+//    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         for item in itemArray {
             item.isSelected = false
-            print("item \(item.itemName) selection is: \(item.isSelected)")
         }
         
         itemArray[indexPath.row].isSelected = true
-        print("item \(itemArray[indexPath.row].itemName) is now: \(itemArray[indexPath.row].isSelected)")
         
-        highlightSelectedItem(position: indexPath)
-        
-//        if itemArray[indexPath.row].isSelected == false {
-//            for item in itemArray {
-//                item.isSelected = false
-//            }
-//            itemArray[indexPath.row].isSelected = true
-//
-//            highlightSelectedItem(position: indexPath)
-//
-//        }else if itemArray[indexPath.row].isSelected == true {
-//            itemArray[indexPath.row].isSelected = false
-//        }
-        
-//        highlightSelectedItem(position: indexPath)
-        
+        userItemView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        highlightSelectedItem()
+        //        highlightSelectedItem(position: indexPath)
         userItemView.reloadData()
+        print(indexPath)
     }
     
-    func highlightSelectedItem(position: IndexPath) {
-
+    func highlightSelectedItem() {
+        
+//        for cell in userItemView.visibleCells {
+//            cell.layer.borderColor = UIColor.clear.cgColor
+//        }
+        
         for cell in userItemView.visibleCells {
-            cell.layer.borderColor = UIColor.clear.cgColor
-        }
-        
-        if itemArray.count <= 2 {
-            for item in itemArray {
-                if item.isSelected {
-                    userItemView.cellForItem(at: position)?.layer.borderColor = UIColor.systemBlue.cgColor
-                    userItemView.cellForItem(at: position)?.layer.borderWidth = 2.0
-                    userItemView.cellForItem(at: position)?.layer.cornerRadius = 10
-                }
-            }
-        }else if itemArray.count > 2 {
-            
-            var newPosition = position
-            newPosition.row -= 1
-            
-            print("new position is: \(newPosition)")
-            
-            for item in itemArray {
-                if item.isSelected {
-                    userItemView.cellForItem(at: newPosition)?.layer.borderColor = UIColor.systemBlue.cgColor
-                    userItemView.cellForItem(at: newPosition)?.layer.borderWidth = 2.0
-                    userItemView.cellForItem(at: newPosition)?.layer.cornerRadius = 10
-                }
+            if cell.isSelected {
+                cell.layer.borderColor = UIColor.systemBlue.cgColor
+                cell.layer.borderWidth = 2.0
+                cell.layer.cornerRadius = 10
+            }else {
+                cell.layer.borderColor = UIColor.clear.cgColor
             }
         }
-        
-        
-        
         
 //        userItemView.cellForItem(at: position)?.layer.borderColor = UIColor.systemBlue.cgColor
 //        userItemView.cellForItem(at: position)?.layer.borderWidth = 2.0
 //        userItemView.cellForItem(at: position)?.layer.cornerRadius = 10
-        
-        print("you tapped: \(userItemView.cellForItem(at: position))")
+//        print("highlighted item at: \(position)")
+    }
+    
+    func unhighlightSelectedItem() {
+        for cell in userItemView.visibleCells {
+            cell.layer.borderColor = UIColor.clear.cgColor
+        }
     }
 }

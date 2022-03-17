@@ -62,19 +62,19 @@
                                 </cells>
                             </collectionView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="xSH-nV-hVi" userLabel="Slider Stack">
-                                <rect key="frame" x="10" y="505" width="394" height="108"/>
+                                <rect key="frame" x="10" y="606" width="394" height="7"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oVD-Cv-7od" userLabel="Rotate Stack">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="50.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="0.0"/>
                                         <subviews>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-16" maxValue="16" translatesAutoresizingMaskIntoConstraints="NO" id="b8e-xY-ohk" userLabel="Rotate Slider">
-                                                <rect key="frame" x="-2" y="0.0" width="398" height="31"/>
+                                            <slider hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-16" maxValue="16" translatesAutoresizingMaskIntoConstraints="NO" id="b8e-xY-ohk" userLabel="Rotate Slider">
+                                                <rect key="frame" x="-2" y="0.0" width="494" height="1"/>
                                                 <connections>
                                                     <action selector="rotateSlider:" destination="BV1-FR-VrT" eventType="valueChanged" id="SB1-zL-DXt"/>
                                                 </connections>
                                             </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rotate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A71-xn-mPN">
-                                                <rect key="frame" x="0.0" y="30" width="394" height="20.5"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rotate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A71-xn-mPN">
+                                                <rect key="frame" x="0.0" y="0.0" width="490" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -82,16 +82,16 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9L4-r7-zfp" userLabel="SCale Stack">
-                                        <rect key="frame" x="0.0" y="57.5" width="394" height="50.5"/>
+                                        <rect key="frame" x="0.0" y="7" width="394" height="0.0"/>
                                         <subviews>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-8" maxValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="3bM-fi-PNu" userLabel="Scale Slider">
-                                                <rect key="frame" x="-2" y="0.0" width="398" height="31"/>
+                                            <slider hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-8" maxValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="3bM-fi-PNu" userLabel="Scale Slider">
+                                                <rect key="frame" x="-2" y="0.0" width="482" height="1"/>
                                                 <connections>
                                                     <action selector="scaleSlider:" destination="BV1-FR-VrT" eventType="valueChanged" id="SGp-12-eQY"/>
                                                 </connections>
                                             </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scale" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhX-8F-1Ze" userLabel="Scale Label">
-                                                <rect key="frame" x="0.0" y="30" width="394" height="20.5"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scale" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhX-8F-1Ze" userLabel="Scale Label">
+                                                <rect key="frame" x="0.0" y="0.0" width="478" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -101,12 +101,20 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OcF-ui-x2A">
-                                <rect key="frame" x="10" y="459" width="79" height="31"/>
+                                <rect key="frame" x="10" y="560" width="79" height="31"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Controls"/>
                                 <connections>
                                     <action selector="controlButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="KlO-23-QV7"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8J-ja-8wR" userLabel="Capture Button">
+                                <rect key="frame" x="177" y="765" width="60" height="47"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="camera.circle" catalog="system" buttonSize="large"/>
+                                <connections>
+                                    <action selector="captureButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Vyh-hx-Ysr"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -118,12 +126,14 @@
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OcF-ui-x2A" secondAttribute="trailing" symbolic="YES" id="CbT-DE-nGn"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="EoA-Pj-wFn"/>
                             <constraint firstItem="OcF-ui-x2A" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="10" id="KCT-F4-RBF"/>
+                            <constraint firstItem="s8J-ja-8wR" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="L8J-Af-StJ"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="xSH-nV-hVi" secondAttribute="trailing" constant="10" id="gYc-bw-lYv"/>
                             <constraint firstItem="kd3-IL-kgh" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="535" id="jaV-ng-FAs"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="kd3-IL-kgh" secondAttribute="bottom" constant="5" id="kWv-bg-Lno"/>
                             <constraint firstItem="kd3-IL-kgh" firstAttribute="top" secondItem="xSH-nV-hVi" secondAttribute="bottom" constant="10" id="nDl-PK-wf8"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="kd3-IL-kgh" secondAttribute="trailing" constant="10" id="nEk-Ya-2Kr"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="nze-5E-onv"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="s8J-ja-8wR" secondAttribute="bottom" constant="50" id="rq3-N0-kzy"/>
                             <constraint firstItem="xSH-nV-hVi" firstAttribute="top" secondItem="OcF-ui-x2A" secondAttribute="bottom" constant="15" id="veo-SE-1tn"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="yNV-la-p1a"/>
                             <constraint firstAttribute="bottom" secondItem="BrB-h1-WRS" secondAttribute="bottom" id="ywt-bW-RSQ"/>
@@ -142,6 +152,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="captureButtonOutlet" destination="s8J-ja-8wR" id="aiK-UD-Mre"/>
                         <outlet property="controlButtonOutlet" destination="OcF-ui-x2A" id="ZzN-Ml-k9h"/>
                         <outlet property="rotateLabelOutlet" destination="A71-xn-mPN" id="8Ju-E9-tLK"/>
                         <outlet property="rotateSliderOutlet" destination="b8e-xY-ohk" id="vIW-do-iOb"/>
@@ -149,11 +160,41 @@
                         <outlet property="scaleSliderOutlet" destination="3bM-fi-PNu" id="gl8-Sb-MRE"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                         <outlet property="userItemView" destination="kd3-IL-kgh" id="qFw-8P-Y1C"/>
+                        <segue destination="1x8-bN-E5B" kind="presentation" identifier="goToImagePreview" id="Dac-PR-aNn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1849.2753623188407" y="64.955357142857139"/>
+        </scene>
+        <!--Image PreviewVC-->
+        <scene sceneID="kNO-SL-1oJ">
+            <objects>
+                <viewController id="1x8-bN-E5B" customClass="ImagePreviewVC" customModule="AnyAR" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="L8H-On-YWC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l7a-nt-Jh7">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GIm-wy-EP0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GIm-wy-EP0" firstAttribute="bottom" secondItem="l7a-nt-Jh7" secondAttribute="bottom" id="3v8-b6-Trj"/>
+                            <constraint firstItem="l7a-nt-Jh7" firstAttribute="top" secondItem="GIm-wy-EP0" secondAttribute="top" id="6nb-90-sG5"/>
+                            <constraint firstItem="GIm-wy-EP0" firstAttribute="trailing" secondItem="l7a-nt-Jh7" secondAttribute="trailing" id="aK8-xs-LFH"/>
+                            <constraint firstItem="l7a-nt-Jh7" firstAttribute="leading" secondItem="GIm-wy-EP0" secondAttribute="leading" id="o8D-Qc-29g"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imagePreviewOutlet" destination="l7a-nt-Jh7" id="hjq-5u-Q61"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y67-Nu-ich" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2872" y="65"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nru-Km-6ZV">
@@ -175,6 +216,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera.circle" catalog="system" width="128" height="121"/>
         <image name="opticaldiscdrive.fill" catalog="system" width="128" height="87"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
