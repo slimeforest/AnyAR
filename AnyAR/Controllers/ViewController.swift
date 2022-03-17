@@ -37,8 +37,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         captureButtonOutlet.layer.borderColor = UIColor.systemBlue.cgColor
         captureButtonOutlet.layer.borderWidth = 1.0
         captureButtonOutlet.layer.cornerRadius = 5
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
