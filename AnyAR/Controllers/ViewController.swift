@@ -12,15 +12,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var userImage = UIImage() {
         didSet {
             self.performSegue(withIdentifier: "goToImagePreview", sender: self)
+            sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         }
     }
     var itemArray = [Item]()
-    //    var renderArray = [RenderItem]()
     let thumbGenerator = GenerateThumbnail()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         sceneView.delegate = self
         sceneView.showsStatistics = false
         sceneView.automaticallyUpdatesLighting = true
@@ -31,10 +30,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         userItemView.allowsMultipleSelection = false
         userItemView.delegate = self
         userItemView.isHidden = false
+        userItemView.layer.cornerRadius = 10
+        userItemView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
+        
         
         captureButtonOutlet.layer.borderColor = UIColor.systemBlue.cgColor
         captureButtonOutlet.layer.borderWidth = 1.0
         captureButtonOutlet.layer.cornerRadius = 5
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,6 +125,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBAction func captureButtonPressed(_ sender: Any) {
         let image: UIImage = sceneView.snapshot()
+        sceneView.debugOptions = []
         self.userImage = image
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -188,10 +193,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 }else {
                     item.itemNode.eulerAngles.y = originalEulerAngle
                 }
-                
             }
         }
-        
     }
     
     @IBAction func scaleSlider(_ sender: UISlider) {
