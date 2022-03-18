@@ -8,7 +8,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var userItemView: UICollectionView!
     
-    
     var userImage = UIImage() {
         didSet {
             self.performSegue(withIdentifier: "goToImagePreview", sender: self)
@@ -22,9 +21,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
+    var itemSelected = Int()
+    
     var itemArray = [Item]()
     let thumbGenerator = GenerateThumbnail()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         userItemView.layer.cornerRadius = 10
         userItemView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
-        
         
         captureButtonOutlet.layer.borderColor = UIColor.systemBlue.cgColor
         captureButtonOutlet.layer.borderWidth = 1.0
@@ -100,6 +99,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     //MARK: - buttons pressed
     
     @IBOutlet weak var captureButtonOutlet: UIButton!
+    @IBOutlet weak var trashbuttonOutlet: UIButton!
+    
+    @IBAction func trashButtonPressed(_ sender: Any) {
+        for item in itemArray {
+            if item.isSelected {
+                item.itemNode.removeFromParentNode()
+                itemArray.remove(at: itemSelected )
+                userItemView.reloadData()
+            }
+        }
+    }
+    
+    
     
     @IBAction func leftItemButtonPressed(_ sender: Any) {
         toggleUImode()
@@ -123,9 +135,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
             rotateLabelOutlet.isHidden = false
             rotateLabelOutlet.isEnabled
+
+            trashbuttonOutlet.isHidden = false
+            trashbuttonOutlet.isEnabled = true
             
             captureButtonOutlet.isHidden = true
             captureButtonOutlet.isEnabled = false
+            
             
             sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
 
@@ -145,6 +161,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             
             rotateLabelOutlet.isHidden = true
             rotateLabelOutlet.isEnabled
+            
+            trashbuttonOutlet.isHidden = true
+            trashbuttonOutlet.isEnabled = false
             
             captureButtonOutlet.isHidden = false
             captureButtonOutlet.isEnabled = true
@@ -264,13 +283,19 @@ extension ViewController: UIDocumentPickerDelegate {
         let mdlAsset = MDLAsset(url: selectedFileURL)
         
         mdlAsset.loadTextures()
+    
         let mdlNode = SCNNode(mdlObject: mdlAsset.object(at: 0))
+        mdlNode.castsShadow = true
+        let mdlLight = SCNLight()
+        mdlLight.type = .directional
+        mdlLight.intensity = 800
+        mdlLight.temperature = 5750
+        mdlNode.light = mdlLight
         
         let newItem = Item(node: mdlNode, name: modelName, url: selectedFileURL, image: modelTHumb, selected: false)
         
         itemArray.append(newItem)
         
-       
         userItemView.reloadData()
         print("Item array when new item has been set: \(itemArray)")
     }
@@ -318,6 +343,8 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        self.itemSelected = indexPath.row
         
         for item in itemArray {
             item.isSelected = false
