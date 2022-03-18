@@ -39,7 +39,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         userItemView.isHidden = false
         
         userItemView.layer.cornerRadius = 10
-        userItemView.backgroundColor = UIColor.systemCyan.withAlphaComponent(0.2)
+        userItemView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.2)
         
         
         captureButtonOutlet.layer.borderColor = UIColor.systemBlue.cgColor

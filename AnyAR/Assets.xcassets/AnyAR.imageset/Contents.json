@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "AnyAR.png",
+      "filename" : "ANy AR.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "AnyAR@2x.png",
+      "filename" : "ANy AR-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "AnyAR@3x.png",
+      "filename" : "ANy AR-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
