@@ -69,13 +69,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="0.0"/>
                                         <subviews>
                                             <slider hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-16" maxValue="16" translatesAutoresizingMaskIntoConstraints="NO" id="b8e-xY-ohk" userLabel="Rotate Slider">
-                                                <rect key="frame" x="-2" y="0.0" width="614" height="1"/>
+                                                <rect key="frame" x="-2" y="0.0" width="618" height="1"/>
                                                 <connections>
                                                     <action selector="rotateSlider:" destination="BV1-FR-VrT" eventType="valueChanged" id="SB1-zL-DXt"/>
                                                 </connections>
                                             </slider>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rotate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A71-xn-mPN">
-                                                <rect key="frame" x="0.0" y="0.0" width="610" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="614" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -86,13 +86,13 @@
                                         <rect key="frame" x="0.0" y="7" width="394" height="0.0"/>
                                         <subviews>
                                             <slider hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-8" maxValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="3bM-fi-PNu" userLabel="Scale Slider">
-                                                <rect key="frame" x="-2" y="0.0" width="602" height="1"/>
+                                                <rect key="frame" x="-2" y="0.0" width="606" height="1"/>
                                                 <connections>
                                                     <action selector="scaleSlider:" destination="BV1-FR-VrT" eventType="valueChanged" id="SGp-12-eQY"/>
                                                 </connections>
                                             </slider>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scale" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhX-8F-1Ze" userLabel="Scale Label">
-                                                <rect key="frame" x="0.0" y="0.0" width="598" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="602" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -113,7 +113,7 @@
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8J-ja-8wR" userLabel="Capture Button">
                                 <rect key="frame" x="177" y="765" width="60" height="47"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="camera.circle" catalog="system" buttonSize="large"/>
+                                <buttonConfiguration key="configuration" style="plain" image="camera.circle.fill" catalog="system" buttonSize="large"/>
                                 <connections>
                                     <action selector="captureButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Vyh-hx-Ysr"/>
                                 </connections>
@@ -181,10 +181,10 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l7a-nt-Jh7">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OxP-dp-Hp2" userLabel="Delete Button">
-                                <rect key="frame" x="20" y="735" width="149" height="73"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OxP-dp-Hp2" userLabel="Delete Button">
+                                <rect key="frame" x="40" y="689" width="133" height="69"/>
                                 <color key="tintColor" systemColor="systemBlueColor"/>
+                                <inset key="contentEdgeInsets" minX="30" minY="20" maxX="30" maxY="20"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button">
                                     <attributedString key="attributedTitle">
@@ -197,11 +197,14 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="deleteButtonPressed:" destination="1x8-bN-E5B" eventType="touchUpInside" id="4uk-oK-IvO"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fbm-u2-oba" userLabel="Export Button">
-                                <rect key="frame" x="245" y="735" width="149" height="73"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fbm-u2-oba" userLabel="Export Button">
+                                <rect key="frame" x="241" y="689" width="133" height="69"/>
                                 <color key="tintColor" systemColor="systemBlueColor"/>
+                                <inset key="contentEdgeInsets" minX="30" minY="20" maxX="30" maxY="20"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button">
                                     <attributedString key="attributedTitle">
@@ -213,18 +216,27 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="exportButtonPressed:" destination="1x8-bN-E5B" eventType="touchUpInside" id="col-SB-ecc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GIm-wy-EP0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="l7a-nt-Jh7" firstAttribute="leading" secondItem="GIm-wy-EP0" secondAttribute="leading" id="Erv-vB-Fzm"/>
+                            <constraint firstItem="GIm-wy-EP0" firstAttribute="trailing" secondItem="Fbm-u2-oba" secondAttribute="trailing" constant="40" id="HYo-rC-SnQ"/>
                             <constraint firstAttribute="bottom" secondItem="l7a-nt-Jh7" secondAttribute="bottom" id="N2F-7O-cDq"/>
                             <constraint firstItem="l7a-nt-Jh7" firstAttribute="trailing" secondItem="GIm-wy-EP0" secondAttribute="trailing" id="ODf-WT-Ty2"/>
+                            <constraint firstItem="OxP-dp-Hp2" firstAttribute="leading" secondItem="GIm-wy-EP0" secondAttribute="leading" constant="40" id="bsh-RC-5P3"/>
                             <constraint firstItem="l7a-nt-Jh7" firstAttribute="top" secondItem="GIm-wy-EP0" secondAttribute="top" id="dOK-io-cMm"/>
+                            <constraint firstItem="Fbm-u2-oba" firstAttribute="bottom" secondItem="GIm-wy-EP0" secondAttribute="bottom" constant="-50" id="iNA-h8-0Qh"/>
+                            <constraint firstItem="OxP-dp-Hp2" firstAttribute="bottom" secondItem="GIm-wy-EP0" secondAttribute="bottom" constant="-50" id="rG1-xN-NhS"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="deleteButtonOutlet" destination="OxP-dp-Hp2" id="DkO-eB-A3B"/>
+                        <outlet property="exportButtonOutlet" destination="Fbm-u2-oba" id="CHj-Tt-9nW"/>
                         <outlet property="imagePreviewOutlet" destination="l7a-nt-Jh7" id="hjq-5u-Q61"/>
                     </connections>
                 </viewController>
@@ -252,7 +264,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camera.circle" catalog="system" width="128" height="121"/>
+        <image name="camera.circle.fill" catalog="system" width="128" height="121"/>
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="folder.badge.plus.fill" catalog="system" width="128" height="91"/>
         <image name="opticaldiscdrive.fill" catalog="system" width="128" height="87"/>

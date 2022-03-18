@@ -25,6 +25,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var itemArray = [Item]()
     let thumbGenerator = GenerateThumbnail()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneView.delegate = self
@@ -39,7 +40,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         userItemView.isHidden = false
         
         userItemView.layer.cornerRadius = 10
-        userItemView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.2)
+        userItemView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
         
         
         captureButtonOutlet.layer.borderColor = UIColor.systemBlue.cgColor
@@ -272,6 +273,8 @@ extension ViewController: UIDocumentPickerDelegate {
         let newItem = Item(node: mdlNode, name: modelName, url: selectedFileURL, image: modelTHumb, selected: false)
         
         itemArray.append(newItem)
+        
+       
         userItemView.reloadData()
         print("Item array when new item has been set: \(itemArray)")
     }
