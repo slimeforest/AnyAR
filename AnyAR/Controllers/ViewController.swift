@@ -15,6 +15,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         }
     }
+    
+    var selectedIndexPath: IndexPath = []{
+        didSet{
+            userItemView.reloadData()
+        }
+    }
+    
     var itemArray = [Item]()
     let thumbGenerator = GenerateThumbnail()
     
@@ -30,6 +37,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         userItemView.allowsMultipleSelection = false
         userItemView.delegate = self
         userItemView.isHidden = false
+        
         userItemView.layer.cornerRadius = 10
         userItemView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
         
@@ -82,7 +90,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 
                 sceneView.scene.rootNode.addChildNode(nodeToAdd)
                 print("\(item.itemName) was set")
-
+                
             }else {
                 print("\(item.itemName) was not set")
             }
@@ -254,72 +262,41 @@ extension ViewController: UICollectionViewDataSource {
             
             itemCell.config(itemArray[indexPath.row])
             
+            var borderColor = UIColor.clear.cgColor
+            var borderWidth: CGFloat = 0
+            let cornerRadius = 10.0
+            
+            if indexPath == selectedIndexPath{
+                borderColor = UIColor.systemBlue.cgColor
+                borderWidth = 2 //or whatever you please
+                
+            }else{
+                borderColor = UIColor.clear.cgColor
+                borderWidth = 0
+            }
+            
+            itemCell.layer.borderWidth = borderWidth
+            itemCell.layer.borderColor = borderColor
+            itemCell.layer.cornerRadius = cornerRadius
             cell = itemCell
         }
         cell.layoutIfNeeded()
         return cell
     }
-
+    
 }
 
 extension ViewController: UICollectionViewDelegate {
-    
-//    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-//
-//        userItemView.selectItem(at: indexPath, animated: true, scrollPosition: UICollectionView.ScrollPosition.centeredHorizontally)
-//        highlightSelectedItem(position: indexPath)
-//                userItemView.reloadData()
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
-//        unhighlightSelectedItem()
-//        userItemView.reloadData()
-//    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         for item in itemArray {
             item.isSelected = false
         }
-        
         itemArray[indexPath.row].isSelected = true
         
-        userItemView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-        highlightSelectedItem()
-        //        highlightSelectedItem(position: indexPath)
+        userItemView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        selectedIndexPath = indexPath
         userItemView.reloadData()
-        print(indexPath)
-    }
-    
-    func highlightSelectedItem() {
-        
-//        for cell in userItemView.visibleCells {
-//            cell.layer.borderColor = UIColor.clear.cgColor
-//        }
-        
-        for cell in userItemView.visibleCells {
-            if cell.isSelected {
-                cell.layer.borderColor = UIColor.systemBlue.cgColor
-                cell.layer.borderWidth = 2.0
-                cell.layer.cornerRadius = 10
-            }else {
-                cell.layer.borderColor = UIColor.clear.cgColor
-            }
-        }
-        
-//        userItemView.cellForItem(at: position)?.layer.borderColor = UIColor.systemBlue.cgColor
-//        userItemView.cellForItem(at: position)?.layer.borderWidth = 2.0
-//        userItemView.cellForItem(at: position)?.layer.cornerRadius = 10
-//        print("highlighted item at: \(position)")
-    }
-    
-    func unhighlightSelectedItem() {
-        for cell in userItemView.visibleCells {
-            cell.layer.borderColor = UIColor.clear.cgColor
-        }
     }
 }

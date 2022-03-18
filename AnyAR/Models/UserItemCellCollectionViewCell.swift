@@ -13,20 +13,21 @@ class UserItemCellCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!    
     @IBOutlet weak var nodeThumbnailPrev: UIImageView!
     
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//
-//
-//        let highlightedCell = UICollectionViewCell()
-//        highlightedCell.layer.borderColor = UIColor.systemBlue.cgColor
-//        highlightedCell.layer.borderWidth = 2.0
-//        highlightedCell.layer.cornerRadius = 10
-//
-//        let unhighlightedCell = UICollectionViewCell()
-//        unhighlightedCell.layer.borderColor = UIColor.systemBlue.cgColor
-//        unhighlightedCell.layer.borderWidth = 2.0
-//        unhighlightedCell.layer.cornerRadius = 10
-//    }
+    override var isSelected: Bool {
+        didSet {
+            if self.isSelected {
+                self.layer.borderColor = UIColor.systemBlue.cgColor
+                self.layer.borderWidth = 2.0
+                self.layer.cornerRadius = 10
+                print("isSelected \(self.isSelected)")
+            }else {
+                self.layer.borderColor = UIColor.clear.cgColor
+                self.layer.borderWidth = 0
+                print("isSelectedNot \(self.isSelected)")
+            }
+        }
+    }
+    
     func config(_ item: Item) {
         nameLabel.text = item.itemName
         nodeThumbnailPrev.image = item.itemImage
