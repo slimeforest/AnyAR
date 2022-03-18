@@ -69,13 +69,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="0.0"/>
                                         <subviews>
                                             <slider hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-16" maxValue="16" translatesAutoresizingMaskIntoConstraints="NO" id="b8e-xY-ohk" userLabel="Rotate Slider">
-                                                <rect key="frame" x="-2" y="0.0" width="914" height="1"/>
+                                                <rect key="frame" x="-2" y="0.0" width="1022" height="1"/>
                                                 <connections>
                                                     <action selector="rotateSlider:" destination="BV1-FR-VrT" eventType="valueChanged" id="SB1-zL-DXt"/>
                                                 </connections>
                                             </slider>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rotate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A71-xn-mPN">
-                                                <rect key="frame" x="0.0" y="0.0" width="910" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="1018" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -86,13 +86,13 @@
                                         <rect key="frame" x="0.0" y="7" width="394" height="0.0"/>
                                         <subviews>
                                             <slider hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="250" minValue="0.0" maxValue="500" translatesAutoresizingMaskIntoConstraints="NO" id="3bM-fi-PNu" userLabel="Scale Slider">
-                                                <rect key="frame" x="-2" y="0.0" width="902" height="1"/>
+                                                <rect key="frame" x="-2" y="0.0" width="1010" height="1"/>
                                                 <connections>
                                                     <action selector="scaleSlider:" destination="BV1-FR-VrT" eventType="valueChanged" id="SGp-12-eQY"/>
                                                 </connections>
                                             </slider>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scale" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhX-8F-1Ze" userLabel="Scale Label">
-                                                <rect key="frame" x="0.0" y="0.0" width="898" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="1006" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -102,10 +102,18 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OcF-ui-x2A">
-                                <rect key="frame" x="10" y="570" width="79" height="31"/>
+                                <rect key="frame" x="10" y="551" width="103.5" height="50"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="Controls"/>
+                                <buttonConfiguration key="configuration" style="gray" buttonSize="large">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Controls">
+                                            <attributes>
+                                                <font key="NSFont" size="17" name="Helvetica"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="controlButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="KlO-23-QV7"/>
                                 </connections>
@@ -119,10 +127,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyM-fP-oc6" userLabel="Trash Button">
-                                <rect key="frame" x="313.5" y="535.5" width="80.5" height="65.5"/>
+                                <rect key="frame" x="337.5" y="551.5" width="56.5" height="49.5"/>
+                                <color key="tintColor" red="1" green="0.089820435680000005" blue="0.10038259319999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" image="trash.fill" catalog="system" buttonSize="large">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="30" scale="large"/>
+                                <buttonConfiguration key="configuration" style="gray" image="trash.fill" catalog="system" buttonSize="medium">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="30" scale="medium"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="trashButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="BaY-PX-Ega"/>
