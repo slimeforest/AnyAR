@@ -17,5 +17,4 @@ class UserItemCellCollectionViewCell: UICollectionViewCell {
         nameLabel.text = item.itemName
         nodeThumbnailPrev.image = item.itemImage
     }
-   
 }

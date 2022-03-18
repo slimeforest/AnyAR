@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -68,13 +69,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="0.0"/>
                                         <subviews>
                                             <slider hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-16" maxValue="16" translatesAutoresizingMaskIntoConstraints="NO" id="b8e-xY-ohk" userLabel="Rotate Slider">
-                                                <rect key="frame" x="-2" y="0.0" width="570" height="1"/>
+                                                <rect key="frame" x="-2" y="0.0" width="598" height="1"/>
                                                 <connections>
                                                     <action selector="rotateSlider:" destination="BV1-FR-VrT" eventType="valueChanged" id="SB1-zL-DXt"/>
                                                 </connections>
                                             </slider>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rotate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A71-xn-mPN">
-                                                <rect key="frame" x="0.0" y="0.0" width="566" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="594" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -85,13 +86,13 @@
                                         <rect key="frame" x="0.0" y="7" width="394" height="0.0"/>
                                         <subviews>
                                             <slider hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-8" maxValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="3bM-fi-PNu" userLabel="Scale Slider">
-                                                <rect key="frame" x="-2" y="0.0" width="558" height="1"/>
+                                                <rect key="frame" x="-2" y="0.0" width="586" height="1"/>
                                                 <connections>
                                                     <action selector="scaleSlider:" destination="BV1-FR-VrT" eventType="valueChanged" id="SGp-12-eQY"/>
                                                 </connections>
                                             </slider>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scale" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhX-8F-1Ze" userLabel="Scale Label">
-                                                <rect key="frame" x="0.0" y="0.0" width="554" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="582" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -140,12 +141,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lEw-sc-QTw">
-                        <barButtonItem key="leftBarButtonItem" systemItem="camera" id="d5Q-wk-cpa">
+                        <barButtonItem key="leftBarButtonItem" id="d5Q-wk-cpa">
+                            <imageReference key="image" image="camera.fill" catalog="system" symbolScale="large"/>
                             <connections>
                                 <action selector="leftItemButtonPressed:" destination="BV1-FR-VrT" id="cL1-hB-Jtf"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="organize" id="GvU-UY-YoV">
+                        <barButtonItem key="rightBarButtonItem" id="GvU-UY-YoV">
+                            <imageReference key="image" image="folder.badge.plus.fill" catalog="system" symbolScale="large"/>
                             <connections>
                                 <action selector="rightItemButtonPressed:" destination="BV1-FR-VrT" id="ptN-CJ-qQR"/>
                             </connections>
@@ -217,6 +220,8 @@
     </scenes>
     <resources>
         <image name="camera.circle" catalog="system" width="128" height="121"/>
+        <image name="camera.fill" catalog="system" width="128" height="94"/>
+        <image name="folder.badge.plus.fill" catalog="system" width="128" height="91"/>
         <image name="opticaldiscdrive.fill" catalog="system" width="128" height="87"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

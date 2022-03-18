@@ -39,7 +39,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         userItemView.isHidden = false
         
         userItemView.layer.cornerRadius = 10
-        userItemView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
+        userItemView.backgroundColor = UIColor.systemCyan.withAlphaComponent(0.2)
         
         
         captureButtonOutlet.layer.borderColor = UIColor.systemBlue.cgColor
@@ -101,24 +101,54 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var captureButtonOutlet: UIButton!
     
     @IBAction func leftItemButtonPressed(_ sender: Any) {
-        if userItemView.isHidden && controlButtonOutlet.isHidden && captureButtonOutlet.isHidden {
+        toggleUImode()
+    }
+    
+    func toggleUImode() {
+        if userItemView.isHidden && controlButtonOutlet.isHidden && scaleSliderOutlet.isHidden && rotateSliderOutlet.isHidden && scaleLabelOutlet.isHidden && rotateLabelOutlet.isHidden && captureButtonOutlet.isHidden == false {
             
             userItemView.isHidden = false
             
-            captureButtonOutlet.isHidden = false
-            captureButtonOutlet.isEnabled = true
-            
             controlButtonOutlet.isHidden = false
             controlButtonOutlet.isEnabled = true
+            
+            scaleSliderOutlet.isHidden = false
+            scaleSliderOutlet.isEnabled = true
+            scaleLabelOutlet.isHidden = false
+            scaleLabelOutlet.isEnabled = true
+            
+            rotateSliderOutlet.isHidden = false
+            rotateSliderOutlet.isEnabled = true
+            
+            rotateLabelOutlet.isHidden = false
+            rotateLabelOutlet.isEnabled
+            
+            captureButtonOutlet.isHidden = true
+            captureButtonOutlet.isEnabled = false
+            
+            sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+
         }else {
-            
             userItemView.isHidden = true
-            
-            captureButtonOutlet.isHidden = false
-            captureButtonOutlet.isEnabled = true
             
             controlButtonOutlet.isHidden = true
             controlButtonOutlet.isEnabled = false
+            
+            scaleSliderOutlet.isHidden = true
+            scaleSliderOutlet.isEnabled = false
+            scaleLabelOutlet.isHidden = true
+            scaleLabelOutlet.isEnabled = false
+            
+            rotateSliderOutlet.isHidden = true
+            rotateSliderOutlet.isEnabled = false
+            
+            rotateLabelOutlet.isHidden = true
+            rotateLabelOutlet.isEnabled
+            
+            captureButtonOutlet.isHidden = false
+            captureButtonOutlet.isEnabled = true
+            
+            sceneView.debugOptions = []
         }
     }
     
