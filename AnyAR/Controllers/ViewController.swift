@@ -235,23 +235,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func scaleSlider(_ sender: UISlider) {
-        print("working")
+        print("current value: \(sender.value)")
+        let adjustedValue = sender.value * 0.00001
+        print("adjusted value: \(adjustedValue)")
+//        let scale = SCNVector3(x: adjustedValue, y: adjustedValue, z: adjustedValue)
+        
+        for item in itemArray {
+            if item.isSelected {
+                item.itemNode.scale.x = adjustedValue
+                item.itemNode.scale.y = adjustedValue
+                item.itemNode.scale.z = adjustedValue
+            }
+        }
     }
-    //
-    //    @IBAction func scaleSlider(_ sender: UISlider) {
-    //        print("scale slider changed")
-    //        let value = sender.value * 0.005
-    //        let scale = SCNVector3(x: value, y: value, z: value)
-    //
-    //        for item in itemArray {
-    //            if item.isSelected {
-    //                item.itemNode.scale.x = item.itemNode.scale.x * value
-    //                item.itemNode.scale.y = item.itemNode.scale.y * value
-    //                item.itemNode.scale.z = item.itemNode.scale.z * value
-    //            }
-    //        }
-    //    }
-    //}
 }
 //MARK: - document picker
 extension ViewController: UIDocumentPickerDelegate {
