@@ -32,6 +32,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.showsStatistics = false
         sceneView.automaticallyUpdatesLighting = true
         sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+        sceneView.autoenablesDefaultLighting = true
+        
         
         userItemView.dataSource = self
         userItemView.allowsSelection = true
@@ -96,10 +98,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             }
         }
     }
-    //MARK: - buttons pressed
+    //MARK: - function buttons pressed
     
     @IBOutlet weak var captureButtonOutlet: UIButton!
     @IBOutlet weak var trashbuttonOutlet: UIButton!
+    @IBOutlet weak var controlButtonsStackOutlet: UIStackView!
     
     @IBAction func trashButtonPressed(_ sender: Any) {
         for item in itemArray {
@@ -116,56 +119,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     func toggleUImode() {
-        if userItemView.isHidden && controlButtonOutlet.isHidden && scaleSliderOutlet.isHidden && rotateSliderOutlet.isHidden && scaleLabelOutlet.isHidden && rotateLabelOutlet.isHidden && captureButtonOutlet.isHidden == false {
-            
+        if controlButtonsStackOutlet.isHidden {
+            controlButtonsStackOutlet.isHidden = false
             userItemView.isHidden = false
-            
-            controlButtonOutlet.isHidden = false
-            controlButtonOutlet.isEnabled = true
-            
-            scaleSliderOutlet.isHidden = false
-            scaleSliderOutlet.isEnabled = true
-            scaleLabelOutlet.isHidden = false
-            scaleLabelOutlet.isEnabled = true
-            
-            rotateSliderOutlet.isHidden = false
-            rotateSliderOutlet.isEnabled = true
-            
-            rotateLabelOutlet.isHidden = false
-            rotateLabelOutlet.isEnabled
-
-            trashbuttonOutlet.isHidden = false
-            trashbuttonOutlet.isEnabled = true
-            
             captureButtonOutlet.isHidden = true
             captureButtonOutlet.isEnabled = false
-            
-            
             sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
-
         }else {
+            controlButtonsStackOutlet.isHidden = true
             userItemView.isHidden = true
-            
-            controlButtonOutlet.isHidden = true
-            controlButtonOutlet.isEnabled = false
-            
-            scaleSliderOutlet.isHidden = true
-            scaleSliderOutlet.isEnabled = false
-            scaleLabelOutlet.isHidden = true
-            scaleLabelOutlet.isEnabled = false
-            
-            rotateSliderOutlet.isHidden = true
-            rotateSliderOutlet.isEnabled = false
-            
-            rotateLabelOutlet.isHidden = true
-            rotateLabelOutlet.isEnabled
-            
-            trashbuttonOutlet.isHidden = true
-            trashbuttonOutlet.isEnabled = false
-            
             captureButtonOutlet.isHidden = false
             captureButtonOutlet.isEnabled = true
-            
             sceneView.debugOptions = []
         }
     }
@@ -189,45 +153,62 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-    //MARK: - sliders
+    //MARK: - controls
+    // Button 1 Items
+    @IBOutlet weak var button1StackOutlet: UIStackView!
+    @IBOutlet weak var controlButtonOutlet: UIButton!
     @IBOutlet weak var rotateSliderOutlet: UISlider!
     @IBOutlet weak var rotateLabelOutlet: UILabel!
-    
     @IBOutlet weak var scaleSliderOutlet: UISlider!
     @IBOutlet weak var scaleLabelOutlet: UILabel!
     
-    @IBOutlet weak var controlButtonOutlet: UIButton!
+    // Button 3 Items
+    @IBOutlet weak var button3StackOutlet: UIStackView!
     
-    @IBAction func controlButtonPressed(_ sender: Any) {
-        toggleControls()
+    @IBAction func ambientButtonPressed(_ sender: Any) {
+        print("ambient button pressed")
+    }
+    @IBAction func directionalButtonPressed(_ sender: Any) {
+        print("directional button pressed")
+    }
+    @IBAction func omniButtonPressed(_ sender: Any) {
+        print("omni button pressed")
+    }
+    @IBAction func probeButtonPressed(_ sender: Any) {
+        print("probe button pressed")
+    }
+    @IBAction func spotButtonPressed(_ sender: Any) {
+        print("spot button pressed")
+    }
+    @IBAction func areaButtonPressed(_ sender: Any) {
+        print("area button pressed")
+    }
+    @IBAction func resetButtonPressed(_ sender: Any) {
+        print("reset button pressed")
+    }
+    @IBAction func colorTempChanged(_ sender: UITextField) {
+        let value = sender.text
+        print("new value: \(value)")
+    }
+    @IBAction func lumensChanged(_ sender: UITextField) {
+        let value = sender.text
+        print("new value: \(value)")
     }
     
-    func toggleControls() {
-        if rotateSliderOutlet.isEnabled &&
-            rotateLabelOutlet.isEnabled &&
-            scaleSliderOutlet.isEnabled &&
-            scaleLabelOutlet.isEnabled {
-            
-            rotateSliderOutlet.isEnabled = false
-            rotateLabelOutlet.isEnabled = false
-            scaleSliderOutlet.isEnabled = false
-            scaleLabelOutlet.isEnabled = false
-            
-            rotateSliderOutlet.isHidden = true
-            rotateLabelOutlet.isHidden = true
-            scaleSliderOutlet.isHidden = true
-            scaleLabelOutlet.isHidden = true
-            
+    
+    @IBAction func controlButtonPressed(_ sender: Any) {
+        if button1StackOutlet.isHidden {
+            button1StackOutlet.isHidden = false
         }else {
-            rotateSliderOutlet.isEnabled = true
-            rotateLabelOutlet.isEnabled = true
-            scaleSliderOutlet.isEnabled = true
-            scaleLabelOutlet.isEnabled = true
-            
-            rotateSliderOutlet.isHidden = false
-            rotateLabelOutlet.isHidden = false
-            scaleSliderOutlet.isHidden = false
-            scaleLabelOutlet.isHidden = false
+            button1StackOutlet.isHidden = true
+        }
+    }
+        
+    @IBAction func toggleButton3Controls(_ sender: Any) {
+        if button3StackOutlet.isHidden {
+            button3StackOutlet.isHidden = false
+        }else {
+            button3StackOutlet.isHidden = true
         }
     }
     
@@ -286,6 +267,7 @@ extension ViewController: UIDocumentPickerDelegate {
         mdlLight.type = .directional
         mdlLight.intensity = 800
         mdlLight.temperature = 5750
+        mdlLight.castsShadow = true
         mdlNode.light = mdlLight
         
         let newItem = Item(node: mdlNode, name: modelName, url: selectedFileURL, image: modelTHumb, selected: false)

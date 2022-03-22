@@ -62,37 +62,86 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="xSH-nV-hVi" userLabel="Slider Stack">
-                                <rect key="frame" x="10" y="606" width="394" height="7"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="eod-Jf-KSl" userLabel="Control Buttons Stack">
+                                <rect key="frame" x="10" y="563.5" width="394" height="49.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oVD-Cv-7od" userLabel="Rotate Stack">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="0.0"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OcF-ui-x2A" userLabel="Control Button ">
+                                        <rect key="frame" x="0.0" y="0.0" width="111" height="49.5"/>
+                                        <color key="tintColor" systemColor="systemBlueColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" buttonSize="medium">
+                                            <imageReference key="image" image="ruler.fill" catalog="system" symbolScale="large"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="controlButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="KlO-23-QV7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Nf-tw-QdH" userLabel="XYZ Button">
+                                        <rect key="frame" x="156" y="0.0" width="47" height="49.5"/>
+                                        <color key="tintColor" systemColor="systemBlueColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" image="slider.horizontal.3" catalog="system" buttonSize="medium">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                                            <attributedString key="attributedTitle"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLt-P0-nct" userLabel="Lighting Button">
+                                        <rect key="frame" x="248" y="0.0" width="44.5" height="49.5"/>
+                                        <color key="tintColor" systemColor="systemBlueColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" image="lightbulb.fill" catalog="system" buttonSize="medium">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                                            <attributedString key="attributedTitle"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="toggleButton3Controls:" destination="BV1-FR-VrT" eventType="touchUpInside" id="QUc-qA-zMX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyM-fP-oc6" userLabel="Trash Button">
+                                        <rect key="frame" x="337.5" y="0.0" width="56.5" height="49.5"/>
+                                        <color key="tintColor" red="1" green="0.089820435680000005" blue="0.10038259319999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="gray" image="trash.fill" catalog="system" buttonSize="medium">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="30" scale="medium"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="trashButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="BaY-PX-Ega"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Lxd-y0-g7l" userLabel="Button 1 Controls Stack">
+                                <rect key="frame" x="10" y="445.5" width="394" height="108"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oJ2-N5-KNa" userLabel="Rotate Stack">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="50.5"/>
                                         <subviews>
-                                            <slider hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-16" maxValue="16" translatesAutoresizingMaskIntoConstraints="NO" id="b8e-xY-ohk" userLabel="Rotate Slider">
-                                                <rect key="frame" x="-2" y="0.0" width="1082" height="1"/>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-16" maxValue="16" translatesAutoresizingMaskIntoConstraints="NO" id="XSS-EH-RrX" userLabel="Rotate Slider">
+                                                <rect key="frame" x="-2" y="0.0" width="398" height="31"/>
                                                 <connections>
-                                                    <action selector="rotateSlider:" destination="BV1-FR-VrT" eventType="valueChanged" id="SB1-zL-DXt"/>
+                                                    <action selector="rotateSlider:" destination="BV1-FR-VrT" eventType="valueChanged" id="vlx-fe-yvZ"/>
                                                 </connections>
                                             </slider>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rotate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A71-xn-mPN">
-                                                <rect key="frame" x="0.0" y="0.0" width="1078" height="0.0"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rotate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1k-yB-erZ">
+                                                <rect key="frame" x="0.0" y="30" width="394" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="9L4-r7-zfp" userLabel="SCale Stack">
-                                        <rect key="frame" x="0.0" y="7" width="394" height="0.0"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ZpL-oM-D5y" userLabel="SCale Stack">
+                                        <rect key="frame" x="0.0" y="57.5" width="394" height="50.5"/>
                                         <subviews>
-                                            <slider hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="250" minValue="0.0" maxValue="500" translatesAutoresizingMaskIntoConstraints="NO" id="3bM-fi-PNu" userLabel="Scale Slider">
-                                                <rect key="frame" x="-2" y="0.0" width="1070" height="1"/>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="250" minValue="0.0" maxValue="500" translatesAutoresizingMaskIntoConstraints="NO" id="tS4-Kc-5I4" userLabel="Scale Slider">
+                                                <rect key="frame" x="-2" y="0.0" width="398" height="31"/>
                                                 <connections>
-                                                    <action selector="scaleSlider:" destination="BV1-FR-VrT" eventType="valueChanged" id="SGp-12-eQY"/>
+                                                    <action selector="scaleSlider:" destination="BV1-FR-VrT" eventType="valueChanged" id="PXQ-4w-9PN"/>
                                                 </connections>
                                             </slider>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scale" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhX-8F-1Ze" userLabel="Scale Label">
-                                                <rect key="frame" x="0.0" y="0.0" width="1066" height="0.0"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scale" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfK-9S-hEJ" userLabel="Scale Label">
+                                                <rect key="frame" x="0.0" y="30" width="394" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -101,17 +150,140 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OcF-ui-x2A" userLabel="Control Button ">
-                                <rect key="frame" x="10" y="554" width="67.5" height="47"/>
-                                <color key="tintColor" systemColor="systemBlueColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" image="gearshape.2.fill" catalog="system" buttonSize="large">
-                                    <attributedString key="attributedTitle"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="controlButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="KlO-23-QV7"/>
-                                </connections>
-                            </button>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="gLR-UV-ZYK" userLabel="Button 3 Controls Stack">
+                                <rect key="frame" x="10" y="402.5" width="394" height="151"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="LK8-4S-UCE" userLabel="Left Stack">
+                                        <rect key="frame" x="0.0" y="0.0" width="181.5" height="151"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="pVr-Os-lkI" userLabel="Numerical Values Stack">
+                                                <rect key="frame" x="0.0" y="0.0" width="123.5" height="91"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="mR4-20-EpQ" userLabel="Color Temp Stack">
+                                                        <rect key="frame" x="0.0" y="0.0" width="85" height="34"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40000" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oyk-jo-pKS">
+                                                                <rect key="frame" x="0.0" y="0.0" width="72" height="34"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                                                <connections>
+                                                                    <action selector="colorTempChanged:" destination="BV1-FR-VrT" eventType="editingDidEnd" id="bJf-u7-L7q"/>
+                                                                </connections>
+                                                            </textField>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="K" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ud-xg-Xxg">
+                                                                <rect key="frame" x="74" y="0.0" width="11" height="34"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Ua5-yd-UZz" userLabel="Light Intensity Stack">
+                                                        <rect key="frame" x="0.0" y="57" width="123.5" height="34"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1000" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H4H-2t-IK9">
+                                                                <rect key="frame" x="0.0" y="0.0" width="61" height="34"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                                                <connections>
+                                                                    <action selector="lumensChanged:" destination="BV1-FR-VrT" eventType="editingDidEnd" id="bOP-xZ-gai"/>
+                                                                </connections>
+                                                            </textField>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lumens" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p39-d6-ifx">
+                                                                <rect key="frame" x="63" y="0.0" width="60.5" height="34"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avS-SS-2xH">
+                                                <rect key="frame" x="0.0" y="120" width="61" height="31"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="gray" title="Reset"/>
+                                                <connections>
+                                                    <action selector="resetButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Ae5-zJ-o1x"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="cST-wx-HSx" userLabel="Right Stack">
+                                        <rect key="frame" x="212.5" y="0.0" width="181.5" height="151"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="EpS-UZ-r4k" userLabel="Left Column Stack">
+                                                <rect key="frame" x="0.0" y="0.0" width="87.5" height="151"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rKC-Iy-hhk">
+                                                        <rect key="frame" x="4.5" y="0.0" width="78" height="38"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="gray" title="Ambient"/>
+                                                        <connections>
+                                                            <action selector="ambientButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Dsz-rw-2hB"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKh-lD-lOk">
+                                                        <rect key="frame" x="2.5" y="55" width="82.5" height="48"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="gray" title="Directional"/>
+                                                        <connections>
+                                                            <action selector="directionalButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="KiH-8v-3fd"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NhI-Oa-vln">
+                                                        <rect key="frame" x="14.5" y="120" width="58.5" height="31"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="gray" title="Omni"/>
+                                                        <connections>
+                                                            <action selector="omniButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="olj-s5-yJH"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="p5w-VN-NgF" userLabel="Right Column Stack">
+                                                <rect key="frame" x="94.5" y="0.0" width="87" height="151"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Qq-3E-aRs">
+                                                        <rect key="frame" x="0.0" y="0.0" width="87" height="61"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="gray" title="Probe"/>
+                                                        <connections>
+                                                            <action selector="probeButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="q8d-Ug-ssC"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Yg-WS-0Ce">
+                                                        <rect key="frame" x="0.0" y="75" width="87" height="31"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="gray" title="Spot"/>
+                                                        <connections>
+                                                            <action selector="spotButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Dtf-1U-FrD"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x3B-xq-YzU">
+                                                        <rect key="frame" x="0.0" y="120" width="87" height="31"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="gray" title="Area"/>
+                                                        <connections>
+                                                            <action selector="areaButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="U44-L4-QPq"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8J-ja-8wR" userLabel="Capture Button">
                                 <rect key="frame" x="176.5" y="765" width="61" height="47"/>
                                 <state key="normal" title="Button"/>
@@ -120,59 +292,27 @@
                                     <action selector="captureButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Vyh-hx-Ysr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyM-fP-oc6" userLabel="Trash Button">
-                                <rect key="frame" x="337.5" y="551.5" width="56.5" height="49.5"/>
-                                <color key="tintColor" red="1" green="0.089820435680000005" blue="0.10038259319999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" image="trash.fill" catalog="system" buttonSize="medium">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="30" scale="medium"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="trashButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="BaY-PX-Ega"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Nf-tw-QdH" userLabel="XYZ Button">
-                                <rect key="frame" x="127.5" y="555" width="63" height="47"/>
-                                <color key="tintColor" systemColor="systemBlueColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" image="slider.horizontal.3" catalog="system" buttonSize="large">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
-                                    <attributedString key="attributedTitle"/>
-                                </buttonConfiguration>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLt-P0-nct" userLabel="Lighting Button">
-                                <rect key="frame" x="240.5" y="555" width="60.5" height="47"/>
-                                <color key="tintColor" systemColor="systemBlueColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" image="lightbulb.fill" catalog="system" buttonSize="large">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
-                                    <attributedString key="attributedTitle"/>
-                                </buttonConfiguration>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="kd3-IL-kgh" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="10" id="0ff-qd-owm"/>
-                            <constraint firstItem="xSH-nV-hVi" firstAttribute="top" secondItem="iLt-P0-nct" secondAttribute="bottom" constant="4" id="1Io-Mm-bZd"/>
-                            <constraint firstItem="iLt-P0-nct" firstAttribute="leading" secondItem="8Nf-tw-QdH" secondAttribute="trailing" constant="50" id="3Vs-g7-TDv"/>
-                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="CyM-fP-oc6" secondAttribute="trailing" constant="20" id="5bt-fu-le5"/>
-                            <constraint firstItem="xSH-nV-hVi" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="10" id="7Et-Cm-BGP"/>
-                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OcF-ui-x2A" secondAttribute="trailing" symbolic="YES" id="CbT-DE-nGn"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="eod-Jf-KSl" secondAttribute="trailing" constant="10" id="79r-FU-CSg"/>
+                            <constraint firstAttribute="trailing" secondItem="gLR-UV-ZYK" secondAttribute="trailing" constant="10" id="AtV-vQ-lXK"/>
+                            <constraint firstItem="kd3-IL-kgh" firstAttribute="top" secondItem="eod-Jf-KSl" secondAttribute="bottom" constant="10" id="BoI-dp-AdA"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="EoA-Pj-wFn"/>
-                            <constraint firstItem="OcF-ui-x2A" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="10" id="KCT-F4-RBF"/>
                             <constraint firstItem="s8J-ja-8wR" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="L8J-Af-StJ"/>
-                            <constraint firstItem="8Nf-tw-QdH" firstAttribute="leading" secondItem="OcF-ui-x2A" secondAttribute="trailing" constant="50" id="Q5v-bY-k7l"/>
-                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="xSH-nV-hVi" secondAttribute="trailing" constant="10" id="gYc-bw-lYv"/>
+                            <constraint firstItem="Lxd-y0-g7l" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="10" id="MOf-iD-46z"/>
+                            <constraint firstAttribute="trailing" secondItem="Lxd-y0-g7l" secondAttribute="trailing" constant="10" id="bEK-dg-2Wh"/>
+                            <constraint firstItem="eod-Jf-KSl" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="10" id="dS1-DX-pb0"/>
                             <constraint firstItem="kd3-IL-kgh" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="535" id="jaV-ng-FAs"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="kd3-IL-kgh" secondAttribute="bottom" constant="5" id="kWv-bg-Lno"/>
-                            <constraint firstItem="xSH-nV-hVi" firstAttribute="top" secondItem="CyM-fP-oc6" secondAttribute="bottom" constant="5" id="lrW-kN-0Mw"/>
-                            <constraint firstItem="kd3-IL-kgh" firstAttribute="top" secondItem="xSH-nV-hVi" secondAttribute="bottom" constant="10" id="nDl-PK-wf8"/>
+                            <constraint firstItem="gLR-UV-ZYK" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="10" id="kvX-gw-doe"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="kd3-IL-kgh" secondAttribute="trailing" constant="10" id="nEk-Ya-2Kr"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="nze-5E-onv"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="s8J-ja-8wR" secondAttribute="bottom" constant="50" id="rq3-N0-kzy"/>
-                            <constraint firstItem="xSH-nV-hVi" firstAttribute="top" secondItem="OcF-ui-x2A" secondAttribute="bottom" constant="5" id="veo-SE-1tn"/>
-                            <constraint firstItem="xSH-nV-hVi" firstAttribute="top" secondItem="8Nf-tw-QdH" secondAttribute="bottom" constant="4" id="yIw-E0-jhC"/>
+                            <constraint firstItem="eod-Jf-KSl" firstAttribute="top" secondItem="Lxd-y0-g7l" secondAttribute="bottom" constant="10" id="sBh-b3-j6b"/>
+                            <constraint firstItem="eod-Jf-KSl" firstAttribute="top" secondItem="gLR-UV-ZYK" secondAttribute="bottom" constant="10" id="u5x-dN-nG0"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="yNV-la-p1a"/>
                             <constraint firstAttribute="bottom" secondItem="BrB-h1-WRS" secondAttribute="bottom" id="ywt-bW-RSQ"/>
                         </constraints>
@@ -192,12 +332,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="button1StackOutlet" destination="Lxd-y0-g7l" id="f3y-1k-d2b"/>
+                        <outlet property="button3StackOutlet" destination="gLR-UV-ZYK" id="gh2-BN-ISm"/>
                         <outlet property="captureButtonOutlet" destination="s8J-ja-8wR" id="aiK-UD-Mre"/>
                         <outlet property="controlButtonOutlet" destination="OcF-ui-x2A" id="ZzN-Ml-k9h"/>
-                        <outlet property="rotateLabelOutlet" destination="A71-xn-mPN" id="8Ju-E9-tLK"/>
-                        <outlet property="rotateSliderOutlet" destination="b8e-xY-ohk" id="vIW-do-iOb"/>
-                        <outlet property="scaleLabelOutlet" destination="WhX-8F-1Ze" id="aQc-VX-Q44"/>
-                        <outlet property="scaleSliderOutlet" destination="3bM-fi-PNu" id="gl8-Sb-MRE"/>
+                        <outlet property="controlButtonsStackOutlet" destination="eod-Jf-KSl" id="UgR-i3-pGQ"/>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                         <outlet property="trashbuttonOutlet" destination="CyM-fP-oc6" id="ceX-V9-41c"/>
                         <outlet property="userItemView" destination="kd3-IL-kgh" id="qFw-8P-Y1C"/>
@@ -305,9 +444,9 @@
         <image name="camera.circle.fill" catalog="system" width="128" height="121"/>
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="folder.badge.plus.fill" catalog="system" width="128" height="91"/>
-        <image name="gearshape.2.fill" catalog="system" width="128" height="100"/>
         <image name="lightbulb.fill" catalog="system" width="113" height="128"/>
         <image name="opticaldiscdrive.fill" catalog="system" width="128" height="87"/>
+        <image name="ruler.fill" catalog="system" width="128" height="57"/>
         <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
         <image name="trash.fill" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
