@@ -111,8 +111,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-    
-    
     @IBAction func leftItemButtonPressed(_ sender: Any) {
         toggleUImode()
     }
@@ -256,9 +254,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func scaleSlider(_ sender: UISlider) {
         print("current value: \(sender.value)")
         let adjustedValue = sender.value * 0.00001
-        print("adjusted value: \(adjustedValue)")
-//        let scale = SCNVector3(x: adjustedValue, y: adjustedValue, z: adjustedValue)
-        
+
         for item in itemArray {
             if item.isSelected {
                 item.itemNode.scale.x = adjustedValue
