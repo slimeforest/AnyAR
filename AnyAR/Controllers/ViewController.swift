@@ -167,24 +167,55 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBAction func ambientButtonPressed(_ sender: Any) {
         print("ambient button pressed")
+        for item in itemArray {
+            if item.isSelected {
+                item.itemNode.light?.type = .ambient
+            }
+        }
     }
     @IBAction func directionalButtonPressed(_ sender: Any) {
         print("directional button pressed")
+        for item in itemArray {
+            if item.isSelected {
+                item.itemNode.light?.type = .directional
+            }
+        }
     }
     @IBAction func omniButtonPressed(_ sender: Any) {
         print("omni button pressed")
+        for item in itemArray {
+            if item.isSelected {
+                item.itemNode.light?.type = .omni
+            }
+        }
     }
     @IBAction func probeButtonPressed(_ sender: Any) {
         print("probe button pressed")
+        for item in itemArray {
+            if item.isSelected {
+                item.itemNode.light?.type = .probe
+            }
+        }
     }
     @IBAction func spotButtonPressed(_ sender: Any) {
         print("spot button pressed")
+        for item in itemArray {
+            if item.isSelected {
+                item.itemNode.light?.type = .spot
+            }
+        }
     }
     @IBAction func areaButtonPressed(_ sender: Any) {
         print("area button pressed")
+        for item in itemArray {
+            if item.isSelected {
+                item.itemNode.light?.type = .area
+            }
+        }
     }
     @IBAction func resetButtonPressed(_ sender: Any) {
         print("reset button pressed")
+        
     }
     @IBAction func colorTempChanged(_ sender: UITextField) {
         let value = sender.text
