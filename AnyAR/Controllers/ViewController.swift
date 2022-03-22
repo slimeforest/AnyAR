@@ -218,8 +218,31 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
     }
     @IBAction func colorTempChanged(_ sender: UITextField) {
-        let value = sender.text
-        print("new value: \(value)")
+        let value = Int(sender.text!)
+        var floatValue = CGFloat(value!)
+        
+        if floatValue > 40000 {
+            floatValue = 40000
+            for item in itemArray {
+                if item.isSelected {
+                    item.itemNode.light?.temperature = floatValue
+                }
+            }
+        }else if floatValue < 0 {
+            floatValue = 0
+            for item in itemArray {
+                if item.isSelected {
+                    item.itemNode.light?.temperature = floatValue
+                }
+            }
+        }else {
+            for item in itemArray {
+                if item.isSelected {
+                    item.itemNode.light?.temperature = floatValue
+                }
+            }
+        }
+        
     }
     @IBAction func lumensChanged(_ sender: UITextField) {
         let value = sender.text
