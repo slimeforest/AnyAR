@@ -66,11 +66,11 @@
                                 <rect key="frame" x="10" y="563.5" width="394" height="49.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OcF-ui-x2A" userLabel="Control Button ">
-                                        <rect key="frame" x="0.0" y="0.0" width="111" height="49.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="65" height="49.5"/>
                                         <color key="tintColor" systemColor="systemBlueColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" buttonSize="medium">
-                                            <imageReference key="image" image="ruler.fill" catalog="system" symbolScale="large"/>
+                                            <imageReference key="image" image="gearshape.2.fill" catalog="system" symbolScale="large"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -78,7 +78,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Nf-tw-QdH" userLabel="XYZ Button">
-                                        <rect key="frame" x="156" y="0.0" width="47" height="49.5"/>
+                                        <rect key="frame" x="110" y="0.0" width="64.5" height="49.5"/>
                                         <color key="tintColor" systemColor="systemBlueColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" image="slider.horizontal.3" catalog="system" buttonSize="medium">
@@ -87,7 +87,7 @@
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLt-P0-nct" userLabel="Lighting Button">
-                                        <rect key="frame" x="248" y="0.0" width="44.5" height="49.5"/>
+                                        <rect key="frame" x="219.5" y="0.0" width="65" height="49.5"/>
                                         <color key="tintColor" systemColor="systemBlueColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" image="lightbulb.fill" catalog="system" buttonSize="medium">
@@ -99,7 +99,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyM-fP-oc6" userLabel="Trash Button">
-                                        <rect key="frame" x="337.5" y="0.0" width="56.5" height="49.5"/>
+                                        <rect key="frame" x="329.5" y="0.0" width="64.5" height="49.5"/>
                                         <color key="tintColor" red="1" green="0.089820435680000005" blue="0.10038259319999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="gray" image="trash.fill" catalog="system" buttonSize="medium">
@@ -110,6 +110,14 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="CyM-fP-oc6" firstAttribute="width" secondItem="OcF-ui-x2A" secondAttribute="width" id="1n4-Xc-bn1"/>
+                                    <constraint firstItem="CyM-fP-oc6" firstAttribute="height" secondItem="OcF-ui-x2A" secondAttribute="height" id="AZz-we-Hci"/>
+                                    <constraint firstItem="8Nf-tw-QdH" firstAttribute="height" secondItem="OcF-ui-x2A" secondAttribute="height" id="Neo-KP-7BM"/>
+                                    <constraint firstItem="8Nf-tw-QdH" firstAttribute="width" secondItem="OcF-ui-x2A" secondAttribute="width" id="fza-9j-Pnw"/>
+                                    <constraint firstItem="iLt-P0-nct" firstAttribute="width" secondItem="OcF-ui-x2A" secondAttribute="width" id="oco-Ed-Lzd"/>
+                                    <constraint firstItem="iLt-P0-nct" firstAttribute="height" secondItem="OcF-ui-x2A" secondAttribute="height" id="qPu-YC-pgb"/>
+                                </constraints>
                             </stackView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Lxd-y0-g7l" userLabel="Button 1 Controls Stack">
                                 <rect key="frame" x="10" y="445.5" width="394" height="108"/>
@@ -444,9 +452,9 @@
         <image name="camera.circle.fill" catalog="system" width="128" height="121"/>
         <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="folder.badge.plus.fill" catalog="system" width="128" height="91"/>
+        <image name="gearshape.2.fill" catalog="system" width="128" height="100"/>
         <image name="lightbulb.fill" catalog="system" width="113" height="128"/>
         <image name="opticaldiscdrive.fill" catalog="system" width="128" height="87"/>
-        <image name="ruler.fill" catalog="system" width="128" height="57"/>
         <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
         <image name="trash.fill" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">

@@ -47,6 +47,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         captureButtonOutlet.layer.borderColor = UIColor.systemBlue.cgColor
         captureButtonOutlet.layer.borderWidth = 1.0
         captureButtonOutlet.layer.cornerRadius = 5
+        
+        let allControlOutlets = [button1StackOutlet, button3StackOutlet]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,6 +117,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     @IBAction func leftItemButtonPressed(_ sender: Any) {
+        hideControls()
         toggleUImode()
     }
     
@@ -154,6 +157,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     //MARK: - controls
+    func hideControls() {
+        button1StackOutlet.isHidden = true
+        button3StackOutlet.isHidden = true
+    }
+    
     // Button 1 Items
     @IBOutlet weak var button1StackOutlet: UIStackView!
     @IBOutlet weak var controlButtonOutlet: UIButton!
@@ -242,7 +250,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 }
             }
         }
-        
     }
     @IBAction func lumensChanged(_ sender: UITextField) {
         let value = sender.text
@@ -252,6 +259,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBAction func controlButtonPressed(_ sender: Any) {
         if button1StackOutlet.isHidden {
+            hideControls()
             button1StackOutlet.isHidden = false
         }else {
             button1StackOutlet.isHidden = true
@@ -260,6 +268,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
     @IBAction func toggleButton3Controls(_ sender: Any) {
         if button3StackOutlet.isHidden {
+            hideControls()
             button3StackOutlet.isHidden = false
         }else {
             button3StackOutlet.isHidden = true
@@ -299,6 +308,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
 }
+
+
+
 //MARK: - document picker
 extension ViewController: UIDocumentPickerDelegate {
     
