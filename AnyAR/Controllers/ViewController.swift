@@ -47,8 +47,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         captureButtonOutlet.layer.borderColor = UIColor.systemBlue.cgColor
         captureButtonOutlet.layer.borderWidth = 1.0
         captureButtonOutlet.layer.cornerRadius = 5
-        
-        let allControlOutlets = [button1StackOutlet, button3StackOutlet]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -159,6 +157,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     //MARK: - controls
     func hideControls() {
         button1StackOutlet.isHidden = true
+        button2StackOutlet.isHidden = true
         button3StackOutlet.isHidden = true
     }
     
@@ -169,6 +168,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var rotateLabelOutlet: UILabel!
     @IBOutlet weak var scaleSliderOutlet: UISlider!
     @IBOutlet weak var scaleLabelOutlet: UILabel!
+    
+    // Button 2 Items
+    @IBOutlet weak var button2StackOutlet: UIStackView!
+    @IBAction func xSliderChanged(_ sender: UISlider) {
+        print("x slider changed")
+    }
+    @IBAction func ySliderChanged(_ sender: UISlider) {
+        print("y slider changed")
+    }
+    @IBAction func zSliderChanged(_ sender: UISlider) {
+        print("z slider changed")
+    }
+    
     
     // Button 3 Items
     @IBOutlet weak var button3StackOutlet: UIStackView!
@@ -256,7 +268,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         print("new value: \(value)")
     }
     
-    
     @IBAction func controlButtonPressed(_ sender: Any) {
         if button1StackOutlet.isHidden {
             hideControls()
@@ -265,7 +276,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             button1StackOutlet.isHidden = true
         }
     }
-        
+    
+    @IBAction func toggleButton2Controls(_ sender: Any) {
+        if button2StackOutlet.isHidden {
+            hideControls()
+            button2StackOutlet.isHidden = false
+        }else {
+            button2StackOutlet.isHidden = true
+        }
+    }
+    
     @IBAction func toggleButton3Controls(_ sender: Any) {
         if button3StackOutlet.isHidden {
             hideControls()
@@ -308,8 +328,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
 }
-
-
 
 //MARK: - document picker
 extension ViewController: UIDocumentPickerDelegate {
