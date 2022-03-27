@@ -55,7 +55,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-        
+        configuration.isLightEstimationEnabled = true
         // Run the view's session
         sceneView.session.run(configuration)
     }
@@ -67,6 +67,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
     
+
     //MARK: - placing objects
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -295,6 +296,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func resetButtonPressed(_ sender: Any) {
         print("reset button pressed")
         
+        for item in itemArray {
+            if item.isSelected {
+                item.itemNode.light?.temperature = 5750
+                item.itemNode.light?.intensity = 800
+                item.itemNode.light?.type = .directional
+            }
+        }
+        
     }
     @IBAction func colorTempChanged(_ sender: UITextField) {
         let value = Int(sender.text!)
@@ -323,8 +332,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     @IBAction func lumensChanged(_ sender: UITextField) {
-        let value = sender.text
+        let value = Int(sender.text!)
+        var floatValue = CGFloat(value!)
         print("new value: \(value)")
+        
+        for item in itemArray {
+            if item.isSelected {
+                item.itemNode.light?.intensity = floatValue
+            }
+        }
     }
     
     @IBAction func controlButtonPressed(_ sender: Any) {
