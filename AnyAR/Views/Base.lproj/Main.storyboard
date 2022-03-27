@@ -161,73 +161,67 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="OIo-UB-9SB" userLabel="Button 2 Controls Stack">
-                                <rect key="frame" x="10" y="374" width="394" height="179.5"/>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="y6A-Tp-MWB" userLabel="Button 2 Controls Stack">
+                                <rect key="frame" x="10" y="493" width="394" height="60.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="f3H-0j-f4Y" userLabel="X Stack">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="58.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ITL-Dh-R7D" userLabel="X Controls Stack">
+                                        <rect key="frame" x="0.0" y="0.0" width="126" height="60.5"/>
                                         <subviews>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="WWP-wE-VIa" userLabel="X Slider">
-                                                <rect key="frame" x="-2" y="0.0" width="398" height="31"/>
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-1" maximumValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="0VN-5T-76p" userLabel="XAxis Stepper">
+                                                <rect key="frame" x="16" y="0.0" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="xSliderChanged:" destination="BV1-FR-VrT" eventType="valueChanged" id="2PG-SA-iTU"/>
+                                                    <action selector="xAxisChanged:" destination="BV1-FR-VrT" eventType="valueChanged" id="nkI-t4-hQt"/>
                                                 </connections>
-                                            </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHS-cK-XV2">
-                                                <rect key="frame" x="191.5" y="38" width="11.5" height="20.5"/>
+                                            </stepper>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUd-QN-GsG">
+                                                <rect key="frame" x="57.5" y="40" width="11.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="WWP-wE-VIa" secondAttribute="trailing" id="64U-B6-cdy"/>
-                                            <constraint firstItem="WWP-wE-VIa" firstAttribute="leading" secondItem="f3H-0j-f4Y" secondAttribute="leading" id="fCI-2N-lBa"/>
-                                        </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iNE-Uf-fur" userLabel="Y Stack">
-                                        <rect key="frame" x="0.0" y="60.5" width="394" height="58.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Izw-w4-Obn" userLabel="Y Controls Stack">
+                                        <rect key="frame" x="134" y="0.0" width="126" height="60.5"/>
                                         <subviews>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="I4U-GF-ARp" userLabel="Y Slider">
-                                                <rect key="frame" x="-2" y="0.0" width="398" height="31"/>
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-1" maximumValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gSu-hf-uTU" userLabel="Y Axis Stepper">
+                                                <rect key="frame" x="16" y="0.0" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="ySliderChanged:" destination="BV1-FR-VrT" eventType="valueChanged" id="sJY-xr-w8h"/>
+                                                    <action selector="yAxisChanged:" destination="BV1-FR-VrT" eventType="valueChanged" id="Hu7-Q0-068"/>
                                                 </connections>
-                                            </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Y" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6uS-sU-6MX">
-                                                <rect key="frame" x="191.5" y="38" width="11" height="20.5"/>
+                                            </stepper>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Y" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5x-DU-zzS">
+                                                <rect key="frame" x="57.5" y="40" width="11" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="I4U-GF-ARp" firstAttribute="leading" secondItem="iNE-Uf-fur" secondAttribute="leading" id="ZS4-6X-WD5"/>
-                                            <constraint firstAttribute="trailing" secondItem="I4U-GF-ARp" secondAttribute="trailing" id="lQn-bJ-EHh"/>
-                                        </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="n4h-YL-les" userLabel="Z Stack">
-                                        <rect key="frame" x="0.0" y="121" width="394" height="58.5"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="QbI-FL-XKq" userLabel="Z Controls Stack">
+                                        <rect key="frame" x="268" y="0.0" width="126" height="60.5"/>
                                         <subviews>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="i0y-be-0Sc" userLabel="Z Slider">
-                                                <rect key="frame" x="-2" y="0.0" width="398" height="31"/>
+                                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-1" maximumValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="c6Y-hQ-ZXS" userLabel="Z Axis Stepper">
+                                                <rect key="frame" x="16" y="0.0" width="94" height="32"/>
                                                 <connections>
-                                                    <action selector="zSliderChanged:" destination="BV1-FR-VrT" eventType="valueChanged" id="z25-FH-E8t"/>
+                                                    <action selector="zAxisChanged:" destination="BV1-FR-VrT" eventType="valueChanged" id="uQ4-sm-cue"/>
                                                 </connections>
-                                            </slider>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Z" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UNL-WB-V3W">
-                                                <rect key="frame" x="191.5" y="38" width="11" height="20.5"/>
+                                            </stepper>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Z" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0T1-qz-QMp">
+                                                <rect key="frame" x="57.5" y="40" width="11" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="i0y-be-0Sc" secondAttribute="trailing" id="LIE-jw-8VQ"/>
-                                            <constraint firstItem="i0y-be-0Sc" firstAttribute="leading" secondItem="n4h-YL-les" secondAttribute="leading" id="ScL-z4-f7F"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="Izw-w4-Obn" firstAttribute="height" secondItem="ITL-Dh-R7D" secondAttribute="height" id="CrM-uU-SKP"/>
+                                    <constraint firstItem="Izw-w4-Obn" firstAttribute="width" secondItem="ITL-Dh-R7D" secondAttribute="width" id="R1U-UB-B1S"/>
+                                    <constraint firstItem="QbI-FL-XKq" firstAttribute="width" secondItem="ITL-Dh-R7D" secondAttribute="width" id="Ysn-fg-Wra"/>
+                                    <constraint firstItem="QbI-FL-XKq" firstAttribute="height" secondItem="ITL-Dh-R7D" secondAttribute="height" id="rq9-Z9-Qmy"/>
+                                </constraints>
                             </stackView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="gLR-UV-ZYK" userLabel="Button 3 Controls Stack">
                                 <rect key="frame" x="10" y="402.5" width="394" height="151"/>
@@ -413,13 +407,13 @@
                         <constraints>
                             <constraint firstItem="kd3-IL-kgh" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="10" id="0ff-qd-owm"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="eod-Jf-KSl" secondAttribute="trailing" constant="10" id="79r-FU-CSg"/>
-                            <constraint firstItem="eod-Jf-KSl" firstAttribute="top" secondItem="OIo-UB-9SB" secondAttribute="bottom" constant="10" id="8wa-I6-qTd"/>
                             <constraint firstAttribute="trailing" secondItem="gLR-UV-ZYK" secondAttribute="trailing" constant="10" id="AtV-vQ-lXK"/>
                             <constraint firstItem="kd3-IL-kgh" firstAttribute="top" secondItem="eod-Jf-KSl" secondAttribute="bottom" constant="10" id="BoI-dp-AdA"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="top" secondItem="U0K-SW-4ec" secondAttribute="top" id="EoA-Pj-wFn"/>
-                            <constraint firstItem="OIo-UB-9SB" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="10" id="HkK-e3-Vdp"/>
                             <constraint firstItem="s8J-ja-8wR" firstAttribute="centerX" secondItem="U0K-SW-4ec" secondAttribute="centerX" id="L8J-Af-StJ"/>
                             <constraint firstItem="Lxd-y0-g7l" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="10" id="MOf-iD-46z"/>
+                            <constraint firstItem="eod-Jf-KSl" firstAttribute="top" secondItem="y6A-Tp-MWB" secondAttribute="bottom" constant="10" id="RAh-sN-qOH"/>
+                            <constraint firstItem="y6A-Tp-MWB" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="10" id="aq2-gG-2d0"/>
                             <constraint firstAttribute="trailing" secondItem="Lxd-y0-g7l" secondAttribute="trailing" constant="10" id="bEK-dg-2Wh"/>
                             <constraint firstItem="eod-Jf-KSl" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" constant="10" id="dS1-DX-pb0"/>
                             <constraint firstItem="kd3-IL-kgh" firstAttribute="top" secondItem="fQZ-KI-GVf" secondAttribute="top" constant="535" id="jaV-ng-FAs"/>
@@ -429,8 +423,8 @@
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="trailing" secondItem="fQZ-KI-GVf" secondAttribute="trailing" id="nze-5E-onv"/>
                             <constraint firstItem="fQZ-KI-GVf" firstAttribute="bottom" secondItem="s8J-ja-8wR" secondAttribute="bottom" constant="50" id="rq3-N0-kzy"/>
                             <constraint firstItem="eod-Jf-KSl" firstAttribute="top" secondItem="Lxd-y0-g7l" secondAttribute="bottom" constant="10" id="sBh-b3-j6b"/>
+                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="y6A-Tp-MWB" secondAttribute="trailing" constant="10" id="spe-zi-srx"/>
                             <constraint firstItem="eod-Jf-KSl" firstAttribute="top" secondItem="gLR-UV-ZYK" secondAttribute="bottom" constant="10" id="u5x-dN-nG0"/>
-                            <constraint firstItem="fQZ-KI-GVf" firstAttribute="trailing" secondItem="OIo-UB-9SB" secondAttribute="trailing" constant="10" id="v8r-je-fbB"/>
                             <constraint firstItem="BrB-h1-WRS" firstAttribute="leading" secondItem="fQZ-KI-GVf" secondAttribute="leading" id="yNV-la-p1a"/>
                             <constraint firstAttribute="bottom" secondItem="BrB-h1-WRS" secondAttribute="bottom" id="ywt-bW-RSQ"/>
                         </constraints>
@@ -451,7 +445,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="button1StackOutlet" destination="Lxd-y0-g7l" id="f3y-1k-d2b"/>
-                        <outlet property="button2StackOutlet" destination="OIo-UB-9SB" id="ayx-N5-SC5"/>
+                        <outlet property="button2StackOutlet" destination="y6A-Tp-MWB" id="OdN-pF-R5w"/>
                         <outlet property="button3StackOutlet" destination="gLR-UV-ZYK" id="gh2-BN-ISm"/>
                         <outlet property="captureButtonOutlet" destination="s8J-ja-8wR" id="aiK-UD-Mre"/>
                         <outlet property="controlButtonOutlet" destination="OcF-ui-x2A" id="ZzN-Ml-k9h"/>
@@ -459,6 +453,7 @@
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                         <outlet property="trashbuttonOutlet" destination="CyM-fP-oc6" id="ceX-V9-41c"/>
                         <outlet property="userItemView" destination="kd3-IL-kgh" id="qFw-8P-Y1C"/>
+                        <outlet property="xAxisStepperOutlet" destination="0VN-5T-76p" id="R2T-GY-aVU"/>
                         <segue destination="1x8-bN-E5B" kind="presentation" identifier="goToImagePreview" id="Dac-PR-aNn"/>
                     </connections>
                 </viewController>

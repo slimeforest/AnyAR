@@ -16,7 +16,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     var selectedIndexPath: IndexPath = []{
-        didSet{
+        didSet {
             userItemView.reloadData()
         }
     }
@@ -25,7 +25,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     var itemArray = [Item]()
     let thumbGenerator = GenerateThumbnail()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneView.delegate = self
@@ -47,6 +47,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         captureButtonOutlet.layer.borderColor = UIColor.systemBlue.cgColor
         captureButtonOutlet.layer.borderWidth = 1.0
         captureButtonOutlet.layer.cornerRadius = 5
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -170,17 +171,75 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var scaleLabelOutlet: UILabel!
     
     // Button 2 Items
+    
     @IBOutlet weak var button2StackOutlet: UIStackView!
-    @IBAction func xSliderChanged(_ sender: UISlider) {
-        print("x slider changed")
-    }
-    @IBAction func ySliderChanged(_ sender: UISlider) {
-        print("y slider changed")
-    }
-    @IBAction func zSliderChanged(_ sender: UISlider) {
-        print("z slider changed")
+    @IBOutlet weak var xAxisStepperOutlet: UIStepper!
+
+    @IBAction func xAxisChanged(_ sender: UIStepper) {
+        if (sender.value == 1) {
+            print("up");
+            sender.value = 0
+
+            for item in itemArray {
+                if item.isSelected {
+                    item.itemNode.position.x += 0.005
+                }
+            }
+        } else if (sender.value == -1) {
+            print("down")
+            sender.value = 0
+            
+            for item in itemArray {
+                if item.isSelected {
+                    item.itemNode.position.x -= 0.005
+                }
+            }
+        }
     }
     
+    @IBAction func yAxisChanged(_ sender: UIStepper) {
+        if (sender.value == 1) {
+            print("up");
+            sender.value = 0
+
+            for item in itemArray {
+                if item.isSelected {
+                    item.itemNode.position.y += 0.005
+                }
+            }
+        } else if (sender.value == -1) {
+            print("down")
+            sender.value = 0
+            
+            for item in itemArray {
+                if item.isSelected {
+                    item.itemNode.position.y -= 0.005
+                }
+            }
+        }
+    }
+    
+    @IBAction func zAxisChanged(_ sender: UIStepper) {
+        if (sender.value == 1) {
+            print("up");
+            sender.value = 0
+
+            for item in itemArray {
+                if item.isSelected {
+                    item.itemNode.position.z += 0.005
+                }
+            }
+        } else if (sender.value == -1) {
+            print("down")
+            sender.value = 0
+            
+            for item in itemArray {
+                if item.isSelected {
+                    item.itemNode.position.z -= 0.005
+                }
+            }
+        }
+    }
     
     // Button 3 Items
     @IBOutlet weak var button3StackOutlet: UIStackView!
@@ -318,7 +377,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBAction func scaleSlider(_ sender: UISlider) {
         print("current value: \(sender.value)")
         let adjustedValue = sender.value * 0.00001
-
+        
         for item in itemArray {
             if item.isSelected {
                 item.itemNode.scale.x = adjustedValue
@@ -344,7 +403,7 @@ extension ViewController: UIDocumentPickerDelegate {
         let mdlAsset = MDLAsset(url: selectedFileURL)
         
         mdlAsset.loadTextures()
-    
+        
         let mdlNode = SCNNode(mdlObject: mdlAsset.object(at: 0))
         mdlNode.castsShadow = true
         let mdlLight = SCNLight()
