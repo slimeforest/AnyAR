@@ -7,7 +7,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var userItemView: UICollectionView!
-    
+        
     var userImage = UIImage() {
         didSet {
             self.performSegue(withIdentifier: "goToImagePreview", sender: self)
@@ -66,11 +66,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
-    
-
     //MARK: - placing objects
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         if let touchLocation = touches.first?.location(in: sceneView) {
             let hitTestResults = sceneView.hitTest(touchLocation, types: .featurePoint)
             
@@ -86,7 +83,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let location = SCNVector3(x: hitResult.worldTransform.columns.3.x, y: hitResult.worldTransform.columns.3.y, z: hitResult.worldTransform.columns.3.z)
         let itemScale = SCNVector3(0.0005, 0.0005, 0.0005)
         
-        for var item in itemArray {
+        for  item in itemArray {
             if item.isSelected {
                 nodeToAdd = item.itemNode
                 nodeToAdd.position = location
@@ -260,39 +257,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 item.itemNode.light?.type = .directional
             }
         }
-    }
-    @IBAction func omniButtonPressed(_ sender: Any) {
-        print("omni button pressed")
-        for item in itemArray {
-            if item.isSelected {
-                item.itemNode.light?.type = .omni
-            }
-        }
-    }
-    @IBAction func probeButtonPressed(_ sender: Any) {
-        print("probe button pressed")
-        for item in itemArray {
-            if item.isSelected {
-                item.itemNode.light?.type = .probe
-            }
-        }
-    }
-    @IBAction func spotButtonPressed(_ sender: Any) {
-        print("spot button pressed")
-        for item in itemArray {
-            if item.isSelected {
-                item.itemNode.light?.type = .spot
-            }
-        }
-    }
-    @IBAction func areaButtonPressed(_ sender: Any) {
-        print("area button pressed")
-        for item in itemArray {
-            if item.isSelected {
-                item.itemNode.light?.type = .area
-            }
-        }
-    }
+    }    
     @IBAction func resetButtonPressed(_ sender: Any) {
         print("reset button pressed")
         
@@ -440,15 +405,11 @@ extension ViewController: UIDocumentPickerDelegate {
 
 //MARK: - user item collection
 extension ViewController: UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return itemArray.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         var cell = UICollectionViewCell()
-        
         if let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as? UserItemCellCollectionViewCell {
             
             itemCell.config(itemArray[indexPath.row])
@@ -474,20 +435,15 @@ extension ViewController: UICollectionViewDataSource {
         cell.layoutIfNeeded()
         return cell
     }
-    
 }
 
 extension ViewController: UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         self.itemSelected = indexPath.row
-        
         for item in itemArray {
             item.isSelected = false
         }
         itemArray[indexPath.row].isSelected = true
-        
         userItemView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         selectedIndexPath = indexPath
         userItemView.reloadData()
