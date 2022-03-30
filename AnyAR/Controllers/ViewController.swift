@@ -34,7 +34,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         sceneView.autoenablesDefaultLighting = true
         
-        
         userItemView.dataSource = self
         userItemView.allowsSelection = true
         userItemView.allowsMultipleSelection = false
@@ -47,7 +46,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         captureButtonOutlet.layer.borderColor = UIColor.systemBlue.cgColor
         captureButtonOutlet.layer.borderWidth = 1.0
         captureButtonOutlet.layer.cornerRadius = 5
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -257,7 +255,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 item.itemNode.light?.type = .directional
             }
         }
-    }    
+    }
     @IBAction func resetButtonPressed(_ sender: Any) {
         print("reset button pressed")
         
@@ -307,7 +305,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             }
         }
     }
-    
     @IBAction func controlButtonPressed(_ sender: Any) {
         if button1StackOutlet.isHidden {
             hideControls()
@@ -316,7 +313,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             button1StackOutlet.isHidden = true
         }
     }
-    
     @IBAction func toggleButton2Controls(_ sender: Any) {
         if button2StackOutlet.isHidden {
             hideControls()
@@ -325,7 +321,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             button2StackOutlet.isHidden = true
         }
     }
-    
     @IBAction func toggleButton3Controls(_ sender: Any) {
         if button3StackOutlet.isHidden {
             hideControls()
@@ -334,7 +329,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             button3StackOutlet.isHidden = true
         }
     }
-    
     @IBAction func rotateSlider(_ sender: UISlider) {
         let value = sender.value
         let roundedValue = Int(round(value))
@@ -357,7 +351,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBAction func scaleSlider(_ sender: UISlider) {
         print("current value: \(sender.value)")
-        let adjustedValue = sender.value * 0.00001
+        let adjustedValue = sender.value * 0.0001
         
         for item in itemArray {
             if item.isSelected {
