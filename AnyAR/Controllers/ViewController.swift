@@ -64,6 +64,24 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
+    
+    func populateCollectionView() {
+        let fileURL = Bundle.main.url(forResource: "Moon", withExtension: "usdz")!
+        let includedAsset = MDLAsset(url: fileURL)
+        includedAsset.loadTextures()
+        let assetNode = SCNNode(mdlObject: includedAsset.object(at: 0))
+        let mdlLight = SCNLight()
+        mdlLight.type = .directional
+        mdlLight.intensity = 800
+        mdlLight.temperature = 5750
+        mdlLight.castsShadow = true
+        assetNode.light = mdlLight
+        let assetImage = (thumbGenerator.thumbnail(for: fileURL, size: CGSize(width: 150, height: 150)) ?? UIImage(named: "pencil"))!
+        let includedItem = Item(node: assetNode, name: fileURL.lastPathComponent, url: fileURL, image: assetImage, selected: false)
+        
+        itemArray.append(includedItem)
+        userItemView.reloadData()
+    }
     //MARK: - placing objects
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touchLocation = touches.first?.location(in: sceneView) {
@@ -131,7 +149,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             sceneView.debugOptions = []
         }
     }
-    
+   
     @IBAction func rightItemButtonPressed(_ sender: Any) {
         let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.usdz], asCopy: true)
         documentPicker.delegate = self
@@ -156,6 +174,26 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         button1StackOutlet.isHidden = true
         button2StackOutlet.isHidden = true
         button3StackOutlet.isHidden = true
+    }
+    @IBAction func helpButtonPressed(_ sender: Any) {
+        showHelpAlert()
+    }
+    
+    func showHelpAlert() {
+        let titleAttributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!, NSAttributedString.Key.foregroundColor: UIColor.black]
+        let titleString = NSAttributedString(string: "How To Use", attributes: titleAttributes)
+        let alert = UIAlertController(title: "", message: "- Import your own .usdz models from the button in the top right \n \n - Tap them in the dock to select them \n \n - The yellow dots are there to help visualize how your iPhone detects depth \n \n - Once an item is selected, tap anywhere in the camera view to place it \n \n - Use the controls above the dock to further customize the selected model", preferredStyle: .actionSheet)
+        alert.setValue(titleString, forKey: "attributedTitle")
+        alert.addAction(UIAlertAction(title: "Import included models", style: .default , handler:{ (UIAlertAction)in
+            print("User click Approve button")
+            self.populateCollectionView()
+        }))
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
+            print("User click Dismiss button")
+        }))
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
     }
     
     // Button 1 Items
@@ -375,8 +413,8 @@ extension ViewController: UIDocumentPickerDelegate {
         
         let modelName = selectedFileURL.lastPathComponent
         let modelTHumb = (thumbGenerator.thumbnail(for: selectedFileURL, size: CGSize(width: 150, height: 150), time: 0) ?? UIImage(named: "doc.plaintext.fill"))!
-        let mdlAsset = MDLAsset(url: selectedFileURL)
         
+        let mdlAsset = MDLAsset(url: selectedFileURL)
         mdlAsset.loadTextures()
         
         let mdlNode = SCNNode(mdlObject: mdlAsset.object(at: 0))
