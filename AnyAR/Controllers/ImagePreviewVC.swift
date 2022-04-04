@@ -14,7 +14,6 @@ class ImagePreviewVC: UIViewController {
     @IBOutlet weak var imagePreviewOutlet: UIImageView!
     
     var image = UIImage()
-    let mainVC = ViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
