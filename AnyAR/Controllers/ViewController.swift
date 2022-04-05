@@ -25,7 +25,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     var itemArray = [Item]()
     let thumbGenerator = GenerateThumbnail()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         sceneView.delegate = self
@@ -33,7 +33,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.automaticallyUpdatesLighting = true
         sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         sceneView.autoenablesDefaultLighting = true
-        
+
         userItemView.dataSource = self
         userItemView.allowsSelection = true
         userItemView.allowsMultipleSelection = false
@@ -64,24 +64,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
-    
-    func populateCollectionView() {
-        let fileURL = Bundle.main.url(forResource: "Moon", withExtension: "usdz")!
-        let includedAsset = MDLAsset(url: fileURL)
-        includedAsset.loadTextures()
-        let assetNode = SCNNode(mdlObject: includedAsset.object(at: 0))
-        let mdlLight = SCNLight()
-        mdlLight.type = .directional
-        mdlLight.intensity = 800
-        mdlLight.temperature = 5750
-        mdlLight.castsShadow = true
-        assetNode.light = mdlLight
-        let assetImage = (thumbGenerator.thumbnail(for: fileURL, size: CGSize(width: 150, height: 150)) ?? UIImage(named: "pencil"))!
-        let includedItem = Item(node: assetNode, name: fileURL.lastPathComponent, url: fileURL, image: assetImage, selected: false)
-        
-        itemArray.append(includedItem)
-        userItemView.reloadData()
-    }
+   
     //MARK: - placing objects
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touchLocation = touches.first?.location(in: sceneView) {
@@ -195,8 +178,26 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             print("completion block")
         })
     }
+
+    func populateCollectionView() {
+        let fileURL = Bundle.main.url(forResource: "Moon", withExtension: "usdz")!
+        let includedAsset = MDLAsset(url: fileURL)
+        includedAsset.loadTextures()
+        let assetNode = SCNNode(mdlObject: includedAsset.object(at: 0))
+        let mdlLight = SCNLight()
+        mdlLight.type = .directional
+        mdlLight.intensity = 800
+        mdlLight.temperature = 5750
+        mdlLight.castsShadow = true
+        assetNode.light = mdlLight
+        let assetImage = (thumbGenerator.thumbnail(for: fileURL, size: CGSize(width: 150, height: 150)) ?? UIImage(named: "pencil"))!
+        let includedItem = Item(node: assetNode, name: fileURL.lastPathComponent, url: fileURL, image: assetImage, selected: false)
+        
+        itemArray.append(includedItem)
+        userItemView.reloadData()
+    }
     
-    // Button 1 Items
+    // Sizing Button Items
     @IBOutlet weak var button1StackOutlet: UIStackView!
     @IBOutlet weak var controlButtonOutlet: UIButton!
     @IBOutlet weak var rotateSliderOutlet: UISlider!
@@ -204,7 +205,40 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     @IBOutlet weak var scaleSliderOutlet: UISlider!
     @IBOutlet weak var scaleLabelOutlet: UILabel!
     
-    // Button 2 Items
+    @IBAction func rotateSlider(_ sender: UISlider) {
+        let value = sender.value
+        let roundedValue = Int(round(value))
+        print(roundedValue)
+        let negRange = (-16)...(-1)
+        let posRange = 1...16
+        
+        for item in itemArray {
+            if item.isSelected {
+                let originalEulerAngle = item.itemNode.eulerAngles.y
+                
+                if negRange.contains(roundedValue) || posRange.contains(roundedValue) {
+                    item.itemNode.eulerAngles.y = .pi/Float(roundedValue)
+                }else {
+                    item.itemNode.eulerAngles.y = originalEulerAngle
+                }
+            }
+        }
+    }
+    
+    @IBAction func scaleSlider(_ sender: UISlider) {
+        print("current value: \(sender.value)")
+        let adjustedValue = sender.value * 0.0001
+        
+        for item in itemArray {
+            if item.isSelected {
+                item.itemNode.scale.x = adjustedValue
+                item.itemNode.scale.y = adjustedValue
+                item.itemNode.scale.z = adjustedValue
+            }
+        }
+    }
+    
+    // Position Button Items
     
     @IBOutlet weak var button2StackOutlet: UIStackView!
     @IBOutlet weak var xAxisStepperOutlet: UIStepper!
@@ -275,7 +309,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
     
-    // Button 3 Items
+    // Lighting Button Items
     @IBOutlet weak var button3StackOutlet: UIStackView!
     
     @IBAction func ambientButtonPressed(_ sender: Any) {
@@ -367,38 +401,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             button3StackOutlet.isHidden = true
         }
     }
-    @IBAction func rotateSlider(_ sender: UISlider) {
-        let value = sender.value
-        let roundedValue = Int(round(value))
-        print(roundedValue)
-        let negRange = (-16)...(-1)
-        let posRange = 1...16
-        
-        for item in itemArray {
-            if item.isSelected {
-                let originalEulerAngle = item.itemNode.eulerAngles.y
-                
-                if negRange.contains(roundedValue) || posRange.contains(roundedValue) {
-                    item.itemNode.eulerAngles.y = .pi/Float(roundedValue)
-                }else {
-                    item.itemNode.eulerAngles.y = originalEulerAngle
-                }
-            }
-        }
-    }
-    
-    @IBAction func scaleSlider(_ sender: UISlider) {
-        print("current value: \(sender.value)")
-        let adjustedValue = sender.value * 0.0001
-        
-        for item in itemArray {
-            if item.isSelected {
-                item.itemNode.scale.x = adjustedValue
-                item.itemNode.scale.y = adjustedValue
-                item.itemNode.scale.z = adjustedValue
-            }
-        }
-    }
+   
 }
 
 //MARK: - document picker
