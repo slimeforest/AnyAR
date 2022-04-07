@@ -39,13 +39,26 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         userItemView.allowsMultipleSelection = false
         userItemView.delegate = self
         userItemView.isHidden = false
-        
+
+        setUI()
+    }
+    
+    func setUI() {
         userItemView.layer.cornerRadius = 10
         userItemView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.6)
         
         captureButtonOutlet.layer.borderColor = UIColor.systemBlue.cgColor
         captureButtonOutlet.layer.borderWidth = 1.0
         captureButtonOutlet.layer.cornerRadius = 5
+        
+        xAxisStepperOutlet.layer.backgroundColor = UIColor.darkGray.cgColor
+        xAxisStepperOutlet.layer.cornerRadius = 10
+        
+        yAxisStepperOutlet.layer.backgroundColor = UIColor.darkGray.cgColor
+        yAxisStepperOutlet.layer.cornerRadius = 10
+
+        zAxisStepperOutlet.layer.backgroundColor = UIColor.darkGray.cgColor
+        zAxisStepperOutlet.layer.cornerRadius = 10
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -241,7 +254,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBOutlet weak var button2StackOutlet: UIStackView!
     @IBOutlet weak var xAxisStepperOutlet: UIStepper!
-
+    @IBOutlet weak var yAxisStepperOutlet: UIStepper!
+    @IBOutlet weak var zAxisStepperOutlet: UIStepper!
+    
     @IBAction func xAxisChanged(_ sender: UIStepper) {
         if (sender.value == 1) {
             print("up");

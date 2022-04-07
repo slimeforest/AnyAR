@@ -427,6 +427,8 @@
                         <outlet property="trashbuttonOutlet" destination="CyM-fP-oc6" id="ceX-V9-41c"/>
                         <outlet property="userItemView" destination="kd3-IL-kgh" id="qFw-8P-Y1C"/>
                         <outlet property="xAxisStepperOutlet" destination="0VN-5T-76p" id="R2T-GY-aVU"/>
+                        <outlet property="yAxisStepperOutlet" destination="gSu-hf-uTU" id="qxU-ow-kFB"/>
+                        <outlet property="zAxisStepperOutlet" destination="c6Y-hQ-ZXS" id="iDr-Im-rs5"/>
                         <segue destination="1x8-bN-E5B" kind="presentation" identifier="goToImagePreview" id="Dac-PR-aNn"/>
                     </connections>
                 </viewController>
