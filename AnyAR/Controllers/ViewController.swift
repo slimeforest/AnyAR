@@ -177,7 +177,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func showHelpAlert() {
         let titleAttributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 25)!, NSAttributedString.Key.foregroundColor: UIColor.black]
         let titleString = NSAttributedString(string: "How To Use", attributes: titleAttributes)
-        let alert = UIAlertController(title: "", message: "- Import your own .usdz models from the button in the top right \n \n - Tap them in the dock to select them \n \n - The yellow dots are there to help visualize how your iPhone detects depth \n \n - Once an item is selected, tap anywhere in the camera view to place it \n \n - Use the controls above the dock to further customize the selected model", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "", message: "- Import your own .usdz models from the button in the top right \n \n - Tap them in the dock to select them \n \n - The yellow dots are there to help visualize how your iPhone detects depth \n \n - Once an item is selected, tap anywhere in the camera view to place it \n \n - Use the controls above the dock to further customize the selected model \n \n - SketchFab is a great website to obtain .usdz models!" , preferredStyle: .actionSheet)
         alert.setValue(titleString, forKey: "attributedTitle")
         alert.addAction(UIAlertAction(title: "Import included models", style: .default , handler:{ (UIAlertAction)in
             print("User click Approve button")
