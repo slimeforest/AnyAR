@@ -43,23 +43,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         setUI()
     }
     
-    func setUI() {
-        userItemView.layer.cornerRadius = 10
-        userItemView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.6)
-        
-        captureButtonOutlet.layer.borderColor = UIColor.systemBlue.cgColor
-        captureButtonOutlet.layer.borderWidth = 1.0
-        captureButtonOutlet.layer.cornerRadius = 5
-        
-        xAxisStepperOutlet.layer.backgroundColor = UIColor.darkGray.cgColor
-        xAxisStepperOutlet.layer.cornerRadius = 10
-        
-        yAxisStepperOutlet.layer.backgroundColor = UIColor.darkGray.cgColor
-        yAxisStepperOutlet.layer.cornerRadius = 10
-
-        zAxisStepperOutlet.layer.backgroundColor = UIColor.darkGray.cgColor
-        zAxisStepperOutlet.layer.cornerRadius = 10
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -78,6 +61,23 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
    
+    func setUI() {
+        userItemView.layer.cornerRadius = 10
+        userItemView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.6)
+        
+        captureButtonOutlet.layer.borderColor = UIColor.systemBlue.cgColor
+        captureButtonOutlet.layer.borderWidth = 1.0
+        captureButtonOutlet.layer.cornerRadius = 5
+        
+        xAxisStepperOutlet.layer.backgroundColor = UIColor.darkGray.cgColor
+        xAxisStepperOutlet.layer.cornerRadius = 10
+        
+        yAxisStepperOutlet.layer.backgroundColor = UIColor.darkGray.cgColor
+        yAxisStepperOutlet.layer.cornerRadius = 10
+        
+        zAxisStepperOutlet.layer.backgroundColor = UIColor.darkGray.cgColor
+        zAxisStepperOutlet.layer.cornerRadius = 10
+    }
     //MARK: - placing objects
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touchLocation = touches.first?.location(in: sceneView) {
@@ -181,7 +181,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         alert.setValue(titleString, forKey: "attributedTitle")
         alert.addAction(UIAlertAction(title: "Import included models", style: .default , handler:{ (UIAlertAction)in
             print("User click Approve button")
-            self.populateCollectionView()
+            self.loadIncludedAsset1()
+            self.loadIncludedAsset2()
         }))
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
             print("User click Dismiss button")
@@ -191,8 +192,26 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         })
     }
 
-    func populateCollectionView() {
+    func loadIncludedAsset1() {
         let fileURL = Bundle.main.url(forResource: "Moon", withExtension: "usdz")!
+        let includedAsset = MDLAsset(url: fileURL)
+        includedAsset.loadTextures()
+        let assetNode = SCNNode(mdlObject: includedAsset.object(at: 0))
+        let mdlLight = SCNLight()
+        mdlLight.type = .directional
+        mdlLight.intensity = 800
+        mdlLight.temperature = 5750
+        mdlLight.castsShadow = true
+        assetNode.light = mdlLight
+        let assetImage = (thumbGenerator.thumbnail(for: fileURL, size: CGSize(width: 150, height: 150)) ?? UIImage(named: "pencil"))!
+        let includedItem = Item(node: assetNode, name: fileURL.lastPathComponent, url: fileURL, image: assetImage, selected: false)
+        
+        itemArray.append(includedItem)
+        userItemView.reloadData()
+    }
+    
+    func loadIncludedAsset2() {
+        let fileURL = Bundle.main.url(forResource: "Textured_T-Rex", withExtension: "usdz")!
         let includedAsset = MDLAsset(url: fileURL)
         includedAsset.loadTextures()
         let assetNode = SCNNode(mdlObject: includedAsset.object(at: 0))
