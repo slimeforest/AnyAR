@@ -41,7 +41,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         userItemView.isHidden = false
         
         userItemView.layer.cornerRadius = 10
-        userItemView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
+        userItemView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.6)
         
         captureButtonOutlet.layer.borderColor = UIColor.systemBlue.cgColor
         captureButtonOutlet.layer.borderWidth = 1.0
@@ -82,7 +82,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let location = SCNVector3(x: hitResult.worldTransform.columns.3.x, y: hitResult.worldTransform.columns.3.y, z: hitResult.worldTransform.columns.3.z)
         let itemScale = SCNVector3(0.0005, 0.0005, 0.0005)
         
-        for  item in itemArray {
+        for item in itemArray {
             if item.isSelected {
                 nodeToAdd = item.itemNode
                 nodeToAdd.position = location
@@ -90,7 +90,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 
                 sceneView.scene.rootNode.addChildNode(nodeToAdd)
                 print("\(item.itemName) was set")
-                
             }else {
                 print("\(item.itemName) was not set")
             }
@@ -227,7 +226,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     @IBAction func scaleSlider(_ sender: UISlider) {
         print("current value: \(sender.value)")
-        let adjustedValue = sender.value * 0.0001
+        let adjustedValue = sender.value * 0.00001
         
         for item in itemArray {
             if item.isSelected {

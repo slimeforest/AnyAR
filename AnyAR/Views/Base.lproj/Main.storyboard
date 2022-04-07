@@ -70,20 +70,24 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SY9-aP-MjC" userLabel="Help Button">
                                         <rect key="frame" x="0.0" y="0.0" width="43" height="49.5"/>
-                                        <color key="tintColor" systemColor="systemBlueColor"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" image="questionmark" catalog="system" buttonSize="medium"/>
+                                        <buttonConfiguration key="configuration" style="filled" image="questionmark" catalog="system" buttonSize="medium">
+                                            <color key="baseBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="helpButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="xox-wQ-GFr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OcF-ui-x2A" userLabel="Control Button ">
                                         <rect key="frame" x="88" y="0.0" width="42.5" height="49.5"/>
-                                        <color key="tintColor" systemColor="systemBlueColor"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" buttonSize="medium">
+                                        <buttonConfiguration key="configuration" style="filled" buttonSize="medium">
                                             <imageReference key="image" image="slider.horizontal.3" catalog="system" symbolScale="large"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                                            <color key="baseForegroundColor" systemColor="systemBlueColor"/>
+                                            <color key="baseBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="controlButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="KlO-23-QV7"/>
@@ -91,11 +95,13 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Nf-tw-QdH" userLabel="XYZ Button">
                                         <rect key="frame" x="175.5" y="0.0" width="43" height="49.5"/>
-                                        <color key="tintColor" systemColor="systemBlueColor"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" image="move.3d" catalog="system" buttonSize="medium">
+                                        <buttonConfiguration key="configuration" style="filled" image="move.3d" catalog="system" buttonSize="medium">
                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                                             <attributedString key="attributedTitle"/>
+                                            <color key="baseForegroundColor" systemColor="systemGreenColor"/>
+                                            <color key="baseBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="toggleButton2Controls:" destination="BV1-FR-VrT" eventType="touchUpInside" id="7SS-am-WJj"/>
@@ -103,11 +109,13 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLt-P0-nct" userLabel="Lighting Button">
                                         <rect key="frame" x="263.5" y="0.0" width="42.5" height="49.5"/>
-                                        <color key="tintColor" systemColor="systemBlueColor"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" image="lightbulb.fill" catalog="system" buttonSize="medium">
+                                        <buttonConfiguration key="configuration" style="filled" image="lightbulb.fill" catalog="system" buttonSize="medium">
                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                                             <attributedString key="attributedTitle"/>
+                                            <color key="baseForegroundColor" systemColor="systemYellowColor"/>
+                                            <color key="baseBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="toggleButton3Controls:" destination="BV1-FR-VrT" eventType="touchUpInside" id="QUc-qA-zMX"/>
@@ -115,10 +123,12 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyM-fP-oc6" userLabel="Trash Button">
                                         <rect key="frame" x="351" y="0.0" width="43" height="49.5"/>
-                                        <color key="tintColor" red="1" green="0.089820435680000005" blue="0.10038259319999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" image="trash.fill" catalog="system" buttonSize="medium">
+                                        <buttonConfiguration key="configuration" style="filled" image="trash.fill" catalog="system" buttonSize="medium">
                                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="30" scale="medium"/>
+                                            <color key="baseForegroundColor" red="1" green="0.089820435680000005" blue="0.10038259319999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="baseBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="trashButtonPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="BaY-PX-Ega"/>
@@ -136,7 +146,7 @@
                                     <constraint firstItem="8Nf-tw-QdH" firstAttribute="height" secondItem="SY9-aP-MjC" secondAttribute="height" id="wTO-5L-ZaT"/>
                                 </constraints>
                             </stackView>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Lxd-y0-g7l" userLabel="Button 1 Controls Stack">
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Lxd-y0-g7l" userLabel="Sizing Controls Stack">
                                 <rect key="frame" x="10" y="559.5" width="394" height="108"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="oJ2-N5-KNa" userLabel="Rotate Stack">
@@ -175,7 +185,7 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="y6A-Tp-MWB" userLabel="Button 2 Controls Stack">
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="y6A-Tp-MWB" userLabel="XYZ Controls Stack">
                                 <rect key="frame" x="10" y="607" width="394" height="60.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ITL-Dh-R7D" userLabel="X Controls Stack">
@@ -237,7 +247,7 @@
                                     <constraint firstItem="QbI-FL-XKq" firstAttribute="height" secondItem="ITL-Dh-R7D" secondAttribute="height" id="rq9-Z9-Qmy"/>
                                 </constraints>
                             </stackView>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="gLR-UV-ZYK" userLabel="Button 3 Controls Stack">
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="gLR-UV-ZYK" userLabel="Lighting Conrols Stack">
                                 <rect key="frame" x="10" y="513.5" width="394" height="154"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="LK8-4S-UCE" userLabel="Left Stack">
@@ -537,6 +547,12 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
