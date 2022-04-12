@@ -14,6 +14,7 @@ class ImagePreviewVC: UIViewController {
     @IBOutlet weak var imagePreviewOutlet: UIImageView!
     
     var image = UIImage()
+    let mainVC = ViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class ImagePreviewVC: UIViewController {
         exportButtonOutlet.layer.borderWidth = 2.0
         exportButtonOutlet.layer.cornerRadius = 10
         
-        deleteButtonOutlet.layer.borderColor = UIColor(displayP3Red: 1.09234, green: -0.200365, blue: -0.0947111, alpha: 1).cgColor
+        deleteButtonOutlet.layer.borderColor = UIColor.systemRed.cgColor
         deleteButtonOutlet.layer.borderWidth = 2.0
         deleteButtonOutlet.layer.cornerRadius = 10
     }
@@ -58,4 +59,9 @@ class ImagePreviewVC: UIViewController {
             present(ac, animated: true)
         }
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        mainVC.promptReview()
+    }
+    
 }

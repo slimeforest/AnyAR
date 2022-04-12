@@ -2,6 +2,7 @@ import UIKit
 import SceneKit
 import ARKit
 import SceneKit.ModelIO
+import SafariServices
 
 class ViewController: UIViewController, ARSCNViewDelegate {
     
@@ -22,12 +23,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     var itemSelected = Int()
-    
     var itemArray = [Item]()
     let thumbGenerator = GenerateThumbnail()
     
+    let defaults = UserDefaults.standard
+    
+    var successfulPhotos: Int = 0
+    var defaultsPhotoAmount = Int()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let savedPhotos = defaults.integer(forKey: "SavedPhotos")
+        defaultsPhotoAmount = savedPhotos
+        
         sceneView.delegate = self
         sceneView.showsStatistics = false
         sceneView.automaticallyUpdatesLighting = true
@@ -40,6 +48,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         userItemView.delegate = self
         userItemView.isHidden = false
 
+        self.view.isMultipleTouchEnabled = true
+//        addGesture()
         setUI()
     }
     
@@ -80,15 +90,51 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     //MARK: - placing objects
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touchLocation = touches.first?.location(in: sceneView) {
-            let hitTestResults = sceneView.hitTest(touchLocation, types: .featurePoint)
-            
-            if let hitResult = hitTestResults.first {
-                addObject(at: hitResult)
-                print("object has been placed")
+        
+        print(touches.count)
+        
+        if touches.count == 1 {
+            if let touchLocation = touches.first?.location(in: sceneView) {
+                let hitTestResults = sceneView.hitTest(touchLocation, types: .featurePoint)
+                
+                if let hitResult = hitTestResults.first {
+                    addObject(at: hitResult)
+                    print("object has been placed")
+                }
             }
+        }else if touches.count == 2 {
+            print("2 finger pinch")
+        }else{
+            print("more than 2 fingers touched the screen")
         }
     }
+    
+    
+    
+    
+//    func addGesture() {
+//        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(didPinch(_:)))
+//
+//        sceneView.addGestureRecognizer(pinchGesture)
+//    }
+//
+//    @objc func didPinch(_ gesture: UIPinchGestureRecognizer) {
+//        if gesture.state == .changed {
+//            let scale = Float(gesture.scale)
+//
+//            for item in itemArray {
+//                if item.isSelected {
+//                    print("item: \(item.itemName) and scale: \(scale)")
+//
+//                    item.itemNode.scale.x *= scale
+//                    item.itemNode.scale.y *= scale
+//                    item.itemNode.scale.z *= scale
+//                }
+//            }
+//        }
+//    }
+    
+    
     
     func addObject(at hitResult: ARHitTestResult){
         var nodeToAdd = SCNNode()
@@ -183,6 +229,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             print("User click Approve button")
             self.loadIncludedAsset1()
             self.loadIncludedAsset2()
+        }))
+        alert.addAction(UIAlertAction(title: "Open Sketchfab.com", style: .default , handler:{ (UIAlertAction)in
+            print("User clicked sketchfab button")
+            if let sketchfab = URL(string: "https://sketchfab.com/tags/search") {
+                let safariVC = SFSafariViewController(url: sketchfab)
+                self.present(safariVC, animated: true, completion: nil)
+            }
         }))
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler:{ (UIAlertAction)in
             print("User click Dismiss button")
@@ -434,9 +487,23 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             button3StackOutlet.isHidden = true
         }
     }
-   
+    
+    
+    //MARK: - Review Prompt
+    func promptReview() {
+        print("function called")
+        successfulPhotos += 1
+        defaults.set( successfulPhotos, forKey: "SavedPhotos")
+        AppReviewRequest.reviewIfNeeded()
+    }
 }
 
+ //MARK: - Pinch to Zoom
+
+    
+
+
+    
 //MARK: - document picker
 extension ViewController: UIDocumentPickerDelegate {
     
@@ -470,7 +537,6 @@ extension ViewController: UIDocumentPickerDelegate {
         print("Item array when new item has been set: \(itemArray)")
     }
 }
-
 //MARK: - user item collection
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

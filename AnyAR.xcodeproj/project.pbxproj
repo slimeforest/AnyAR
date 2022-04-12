@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9CA59C142239D4DE2E0DA0B0 /* Pods_AnyAR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8800BB63DCD587EF9949283 /* Pods_AnyAR.framework */; };
 		C3440F1A27B45DBD00C8C0CC /* UserItemCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3440F1927B45DBD00C8C0CC /* UserItemCellCollectionViewCell.swift */; };
+		C349BB482805401400FA77B5 /* PinchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C349BB472805401400FA77B5 /* PinchManager.swift */; };
+		C362AE3628036B840080B632 /* AppReviewRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C362AE3528036B840080B632 /* AppReviewRequest.swift */; };
 		C37B660E2799FA6800A37604 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37B660D2799FA6800A37604 /* AppDelegate.swift */; };
 		C37B66102799FA6800A37604 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = C37B660F2799FA6800A37604 /* art.scnassets */; };
 		C37B66122799FA6800A37604 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37B66112799FA6800A37604 /* ViewController.swift */; };
@@ -27,6 +29,8 @@
 		4B48742C5883240FA4B9FCB4 /* Pods-AnyAR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyAR.release.xcconfig"; path = "Target Support Files/Pods-AnyAR/Pods-AnyAR.release.xcconfig"; sourceTree = "<group>"; };
 		B8800BB63DCD587EF9949283 /* Pods_AnyAR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyAR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3440F1927B45DBD00C8C0CC /* UserItemCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		C349BB472805401400FA77B5 /* PinchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchManager.swift; sourceTree = "<group>"; };
+		C362AE3528036B840080B632 /* AppReviewRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReviewRequest.swift; sourceTree = "<group>"; };
 		C37B660A2799FA6800A37604 /* AnyAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnyAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C37B660D2799FA6800A37604 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C37B660F2799FA6800A37604 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				C3BFFEB227B4D4C500D86317 /* Item.swift */,
+				C349BB472805401400FA77B5 /* PinchManager.swift */,
+				C362AE3528036B840080B632 /* AppReviewRequest.swift */,
 				C3BFFEB427B4D94A00D86317 /* GenerateThumbnail.swift */,
 				C3440F1927B45DBD00C8C0CC /* UserItemCellCollectionViewCell.swift */,
 			);
@@ -251,7 +257,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C362AE3628036B840080B632 /* AppReviewRequest.swift in Sources */,
 				C3D9210C27E3CC2F000F154D /* ImagePreviewVC.swift in Sources */,
+				C349BB482805401400FA77B5 /* PinchManager.swift in Sources */,
 				C3BFFEB327B4D4C500D86317 /* Item.swift in Sources */,
 				C3440F1A27B45DBD00C8C0CC /* UserItemCellCollectionViewCell.swift in Sources */,
 				C37B66122799FA6800A37604 /* ViewController.swift in Sources */,
@@ -424,7 +432,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.iSpimbi.AnyAR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -459,7 +467,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.iSpimbi.AnyAR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
